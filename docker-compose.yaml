@@ -1,0 +1,42 @@
+version: '3.4'
+
+x-web:
+  &web
+  build:
+    context: .
+    dockerfile: Dockerfile.dev
+  environment:
+    RAILS_ENV: development
+    DB_USERNAME: postgres
+    DB_PASSWORD: secret
+    DB_HOST: db
+    DB_PORT: 5432
+    DB_NAME: app_dev
+    SECRET_KEY_BASE: STUB
+  restart: on-failure:3
+  stdin_open: true
+  tty: true
+  volumes:
+    - .:/app:rw
+    - bundle_cache:/bundle
+
+services:
+  web:
+    <<: *web
+    ports:
+      - 3000:3000/tcp
+    depends_on:
+      - db
+
+  db:
+    image: postgres:11.2
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+    restart: always
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  bundle_cache:
+  postgres:

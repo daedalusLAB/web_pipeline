@@ -1,0 +1,21 @@
+# config/database.yml
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: <%= ENV["DB_USERNAME"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
+  host: <%= ENV["DB_HOST"] %>
+  port: <%= ENV["DB_PORT"] %>
+  pool: <%= ENV["RAILS_MAX_THREADS"] { 5 } %>
+
+development:
+  <<: *default
+  database: <%= ENV["DB_NAME"] %>_development
+
+test:
+  <<: *default
+  database: <%= ENV["DB_NAME"] %>_test
+
+production:
+  <<: *default
+  database: <%= ENV["DB_NAME"] %>_production
