@@ -14,6 +14,13 @@
 
     <%= render "layouts/bar" %>
     <div class="container">
+      <div>
+        <% flash.each do |key, value| %>
+              <div class="<%= flash_class(key) %>" role="alert">
+                    <%= value %>
+              </div>
+        <% end %>    
+      </div>
       <%= yield %>
     </div>
   </body>
