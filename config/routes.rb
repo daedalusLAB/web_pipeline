@@ -1,3 +1,6 @@
+require "sidekiq/web"
+Sidekiq::Web.app_url = "/"
+
 Rails.application.routes.draw do
   devise_for :users
   get 'welcome/index'
@@ -13,5 +16,11 @@ Rails.application.routes.draw do
     get "/users/sign_out", as: "sign_out", to: "devise/sessions#destroy"
   end
 
-  
+  devise_scope :user do
+    authenticated :user do
+      mount Sidekiq::Web => '/sidekiq'
+    end
+  end
+
+
 end

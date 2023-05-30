@@ -76,4 +76,5 @@ end
 
 
 gem 'devise'
-
+gem 'sidekiq'
+gem 'redis'
