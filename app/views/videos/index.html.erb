@@ -1,0 +1,23 @@
+<h1>Videos</h1>
+
+<%= link_to "New video", new_video_path %>
+
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Filename</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @videos.each do |video| %>
+        <tr>
+          <td><%= video.name %></td>
+          <td><%= video.zip_url %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

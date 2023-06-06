@@ -2,9 +2,9 @@
 
 
 <% if user_signed_in? %>
-  <% render partial: "private" %>
+  <%= render partial: "private" %>
 <% else %>
-    <% render partial: "public" %>
+  <%= render partial: "public" %>
 <% end %>
 
 

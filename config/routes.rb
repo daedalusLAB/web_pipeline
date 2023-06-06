@@ -2,6 +2,7 @@ require "sidekiq/web"
 Sidekiq::Web.app_url = "/"
 
 Rails.application.routes.draw do
+  resources :videos
   devise_for :users
   get 'welcome/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
