@@ -1,4 +1,4 @@
-<nav class="navbar bg-primary navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+<nav class="navbar bg-warning navbar-expand-lg bg-body-tertiary" data-bs-theme="light">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">Daedalus Pipeline</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,12 +27,20 @@
           <a class="nav-link disabled">Disabled</a>
         </li> %>
       </ul>
+
+      <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
         <% if user_signed_in? %>
-          <%= link_to "Log out", sign_out_path, class: "nav-link active " %>            
+
+          <div class="nav-item">
+            <%= link_to "Pipeline", videos_path, class: "nav-link active" %>
+          </div>
+          <div class="nav-item">
+            <%= link_to "Log out", sign_out_path, class: "nav-link active " %>
+          </div>
         <% else %>
           <%= link_to "Log in", new_user_session_path, class: "nav-link active" %>
         <% end %>
-      </li>
+      </ul>
     </div>
   </div>
 </nav>

@@ -1,21 +1,41 @@
-<h1>Videos</h1>
+<h1>Welcome to the pipeline processing page!</h1>
+<p>Here, you can easily upload your .zip file and have it processed through our pipeline for further analysis or transformation.</p>
 
-<%= link_to "New video", new_video_path %>
+  <h2>How it works:</h2>
+  <ol>
+      <li>Upload your .zip file: Simply click on the "Upload" button and select the .zip file you wish to process. Once uploaded, the file will be placed in a queue and you will be notified that it is waiting its turn.</li>
+      <li>In the queue: Our system manages the processing of files in the order they are received. While your file is in the queue, it will wait for its turn to be processed. This ensures fairness and efficient resource utilization.</li>
+      <li>Pipeline execution: When your file reaches the front of the queue, it will be automatically processed through our pipeline. The pipeline consists of various steps, such as data extraction, analysis, or any custom transformations you have requested.</li>
+      <li>Task completion: Once the pipeline finishes processing your file, you will receive an email notification informing you that the task is complete. Additionally, the status of your task will be updated on the web page to "Completed."</li>
+      <li>Resulting .zip file: As a result of the pipeline execution, a new .zip file will be generated. This file will contain the processed output of your original file, which may include any modifications, analyses, or additional data derived from the pipeline steps.</li>
+  </ol>
 
+<%= link_to "Upload zip", new_video_path, class: "btn btn-warning" %>
 
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
       <tr>
         <th>Name</th>
+        <th>Status</th>
         <th>Filename</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
       <% @videos.each do |video| %>
         <tr>
           <td><%= video.name %></td>
-          <td><%= video.zip_url %></td>
+          <td><span class="badge bg-warning"><%= video.status %></span></td>
+          <td><%= video.zip_url.split('/').last %></td>
+          <% if video.status == "Completed" %>
+            <td>
+              <%= link_to "Download", video.zip_url, class: "btn btn-warning" %>
+            </td>
+            <td>
+              <%= link_to "Delete", video, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

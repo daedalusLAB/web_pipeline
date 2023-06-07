@@ -26,6 +26,7 @@ class VideosController < ApplicationController
   def create
     @video = Video.new(video_params)
     @video.user = current_user
+    @video.status = "Uploaded"
 
     respond_to do |format|
       if @video.save
