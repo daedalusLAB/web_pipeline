@@ -28,9 +28,9 @@
           <td><%= video.name %></td>
           <td><span class="badge bg-warning"><%= video.status %></span></td>
           <td><%= video.zip_url.split('/').last %></td>
-          <% if video.status == "Completed" %>
-            <td>
-              <%= link_to "Download", video.zip_url, class: "btn btn-warning" %>
+          <% if video.status == "Processed" %>
+            <td>              
+              <%= link_to "Download", "/uploads/video/zip/#{video.id}/#{video.name}.zip", class: "btn btn-warning" %>              
             </td>
             <td>
               <%= link_to "Delete", video, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>

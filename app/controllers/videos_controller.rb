@@ -26,16 +26,20 @@ class VideosController < ApplicationController
   def create
     @video = Video.new(video_params)
     @video.user = current_user
-    @video.status = "Uploaded"
+    @video.status = "Queued"
 
     respond_to do |format|
       if @video.save
+
+        # send the video to the pipeline
+        Pipeline01Job.perform_async(@video.id)
         #format.html { redirect_to video_url(@video), notice: "Video was successfully created." }
         format.json { render :show, status: :created, location: @video }
         # redirect to the videos index page
-        format.html { redirect_to videos_url, notice: "Video was successfully created." }
+        format.html { redirect_to videos_url, notice: "Zip was successfully created." }
 
       else
+        @video.status = "Failed"
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @video.errors, status: :unprocessable_entity }
       end
@@ -57,10 +61,21 @@ class VideosController < ApplicationController
 
   # DELETE /videos/1 or /videos/1.json
   def destroy
+
+    # delete the video zip file
+    video_name = @video.name
+    # get the video path
+    video_path = @video.zip.file.path
+    video_path_less_filename = video_path.split("/").slice(0..-2).join("/")
+    system("rm \"#{video_path_less_filename}/#{video_name}.zip\"")
+    
     @video.destroy
 
+    # delete the video from the pipeline
+
+
     respond_to do |format|
-      format.html { redirect_to videos_url, notice: "Video was successfully destroyed." }
+      format.html { redirect_to videos_url, notice: "Zip was successfully destroyed." }
       format.json { head :no_content }
     end
   end

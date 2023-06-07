@@ -1,10 +1,9 @@
-<p style="color: green"><%= notice %></p>
+<h1>Delete "<%= @video.name %>" zip file</h1>
 
-<%= render @video %>
 
 <div>
-  <%= link_to "Edit this video", edit_video_path(@video) %> |
-  <%= link_to "Back to videos", videos_path %>
+  <%= button_to "Destroy this zip", @video, method: :delete , data: { confirm: "Are you sure?" } , class: "btn btn-danger" %>
+  <br>
+  <%= button_to "Back", videos_path,  method: :get, class: "btn btn-warning" %>
 
-  <%= button_to "Destroy this video", @video, method: :delete %>
 </div>
