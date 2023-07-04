@@ -1,0 +1,74 @@
+# Layer 0. Download base ruby image.
+FROM ruby:3.2.2-bullseye
+
+# Install dpkg packages
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends python-is-python3 \
+python3-dev python3-pip python3-setuptools git g++ wget make libprotobuf-dev protobuf-compiler libopencv-dev \
+libgoogle-glog-dev libboost-all-dev libhdf5-dev libatlas-base-dev vim bash build-essential libpq-dev curl gnupg2 \
+r-base nodejs npm && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Install yarn
+RUN npm install --global yarn
+
+# Install openpose
+
+
+# Install openpose
+#for python api
+RUN pip3 install --upgrade pip &&  pip3 install numpy opencv-python
+
+#replace cmake as old version has CUDA variable bugs
+RUN wget https://github.com/Kitware/CMake/releases/download/v3.16.0/cmake-3.16.0-Linux-x86_64.tar.gz && \
+tar xzf cmake-3.16.0-Linux-x86_64.tar.gz -C /opt && \
+rm cmake-3.16.0-Linux-x86_64.tar.gz
+ENV PATH="/opt/cmake-3.16.0-Linux-x86_64/bin:${PATH}"
+
+#get openpose
+WORKDIR /openpose
+RUN git clone https://github.com/CMU-Perceptual-Computing-Lab/openpose.git . && git submodule update --init --recursive --remote
+
+#build it
+WORKDIR /openpose/build
+RUN cmake -DBUILD_PYTHON=ON -DGPU_MODE=CPU_ONLY .. && make -j `nproc`
+
+RUN cd /openpose/build/python/openpose && make install && \
+cd /openpose/build/python/openpose && cp ./pyopenpose.cpython-39-x86_64-linux-gnu.so /usr/local/lib/python3.9/dist-packages && cd /usr/local/lib/python3.9/dist-packages && \
+ln -s pyopenpose.cpython-39-x86_64-linux-gnu.so pyopenpose
+ENV LD_LIBRARY_PATH=/openpose/build/python/openpose
+RUN cd /openpose/models && bash getModels.sh
+
+## Install Whisper timestamped
+RUN pip install git+https://github.com/linto-ai/whisper-timestamped
+
+# Install is_there_a_person_in_the_video
+RUN wget https://raw.githubusercontent.com/daedalusLAB/mario_plumber/main/is_there_a_person_in_the_video/is_there_a_person_in_the_video.py -O /usr/bin/is_there_a_person_in_the_video && chmod +x /usr/bin/is_there_a_person_in_the_video
+
+# Creating environment variables which used further in Dockerfile.
+ENV APP_HOME /app
+
+# Layer 3. Adding config options for bundler.
+RUN echo "gem: --no-rdoc --no-ri" > /etc/gemrc && gem install nokogiri --platform=ruby
+
+# Layer 4. Creating and specifying the directory in which the application will be placed.
+WORKDIR $APP_HOME
+
+# Layer 5. Copying Gemfile and Gemfile.lock.
+COPY Gemfile Gemfile.lock ./
+
+# Layer 6. Installing dependencies.
+RUN bundle check || bundle install --jobs 20 --retry 5
+
+# Layer 7. Copying full application.
+COPY . .
+
+# Layer 8. Make file executable
+RUN chmod +x ./dev-docker-entrypoint.sh
+
+# yarn build 
+RUN yarn run build
+
+# Layer 9. Run migrations
+ENTRYPOINT ["./dev-docker-entrypoint.sh"]
+
+# Layer 10. Command to run application.
+CMD ["rails", "s", "-e", "development", "-p", "3000", "-b", "0.0.0.0"]

@@ -4,7 +4,7 @@ x-web:
   &web
   build:
     context: .
-    dockerfile: Dockerfile.dev
+    dockerfile: Dockerfile-full.dev
   environment:
     RAILS_ENV: development
     DB_USERNAME: postgres
