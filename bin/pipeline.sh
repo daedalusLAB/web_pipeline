@@ -40,7 +40,7 @@ conda activate whisper_timestamped
 for f in "$(dirname "$1")/$(basename "$2")/people"/*.mp4; do
     # remove the extension for output_dir
     output_dir="${f%.*}"
-    whisper_timestamped "$f" --model large --accurate --output_dir "$output_dir/words_alignment" --output_format csv
+    whisper_timestamped "$f" --model large --accurate --output_dir "$output_dir/words_alignment" --output_format csv --punctuations_with_words False
 done
 
 conda deactivate
