@@ -1,59 +1,24 @@
-version: '3.4'
-
-x-web:
-  &web
-  build:
-    context: .
-    dockerfile: Dockerfile-full.dev
-  environment:
-    RAILS_ENV: development
-    DB_USERNAME: postgres
-    DB_PASSWORD: secret
-    DB_HOST: db
-    DB_PORT: 5432
-    DB_NAME: app_dev
-    SECRET_KEY_BASE: STUB
-    REDIS_URL: redis://redis:6379/1
-  restart: on-failure:3
-  stdin_open: true
-  tty: true
-  volumes:
-    - .:/app:rw
-    - bundle_cache:/bundle
-
 services:
-  web:
-    <<: *web
-    ports:
-      - 3000:3000/tcp
-    depends_on:
-      - db
-
   db:
     image: postgres:11.2
+    ports:
+      - '127.0.0.1:5432:5432'
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: secret
-    restart: always
+    restart: unless-stopped
     volumes:
       - postgres:/var/lib/postgresql/data
 
-  sidekiq:
-    <<: *web
-    command: bundle exec sidekiq
-    depends_on:
-      - redis
-      - web
-
   redis:
     image: 'redis:7.0-alpine'
+    ports:
+      - '127.0.0.1:6379:6379'
     command: redis-server
+    restart: unless-stopped
     volumes:
       - redis:/data
 
-
-
 volumes:
-  bundle_cache:
   postgres:
   redis:

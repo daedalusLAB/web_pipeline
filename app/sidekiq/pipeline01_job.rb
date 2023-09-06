@@ -15,20 +15,11 @@ class Pipeline01Job
     video.status = "Processing"
     video.save
 
-    # exec bash script "hola.sh" to process the video
-    system("sleep 20")
-
-    # copy video to the same url path the filename is video name .zip
-    # get the video name
-    video_name = video.name
-    # get the video path
-    video_path = video.zip.file.path
-    video_path_less_filename = video_path.split("/").slice(0..-2).join("/")
-    # copy video to the same url path the filename is video name .zip
-    puts("**************")
-    puts("cp #{video_path} #{video_path_less_filename}/#{video_name}.zip")
-    puts("**************")
-    system("cp \"#{video_path}\" \"#{video_path_less_filename}/#{video_name}.zip\"")
+    # exec pipeline script in the rails app bin folder to process the videos
+    puts "**********************************************************************"
+    puts "bin/pipeline.sh #{video.zip.file.path}  \"#{video.name}\" "
+    system("bin/pipeline.sh #{video.zip.file.path}  \"#{video.name}\" ")
+    puts "**********************************************************************"
 
     # update the status of the video
     video.status = "Processed"
