@@ -6,7 +6,9 @@ class VideosController < ApplicationController
 
   # GET /videos or /videos.json
   def index
-    @videos = current_user.videos
+    # get all videos ordered by created_at
+    @videos = Video.order(created_at: :desc)
+    #@videos = current_user.videos
   end
 
   # # GET /videos/1 or /videos/1.json

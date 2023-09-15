@@ -18,12 +18,20 @@ class Pipeline01Job
     # exec pipeline script in the rails app bin folder to process the videos
     puts "**********************************************************************"
     puts "bin/pipeline.sh #{video.zip.file.path}  \"#{video.name}\" "
-    system("bin/pipeline.sh #{video.zip.file.path}  \"#{video.name}\" ")
+    # get the output of the script and print it to the console. If there is an error, it will be printed to the console
+    error = system("bin/pipeline.sh #{video.zip.file.path}  \"#{video.name}\" ")
+    puts "**********************************************************************"
+    puts "ERROR: #{error}"
     puts "**********************************************************************"
 
+    if error
     # update the status of the video
-    video.status = "Processed"
-    video.save
+      video.status = "Processed"
+    else
+      video.status = "Error"
+    end
+    
+      video.save
 
 
 

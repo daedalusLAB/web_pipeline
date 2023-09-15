@@ -1,24 +1,23 @@
-# README
+# Project Title
+## Description
+This project is a web application that allows users to upload .zip files for processing through a pipeline. The pipeline performs various steps such as data extraction, analysis, or any custom transformations requested by the user. The processed output is then made available for download.
+Installation
+Follow the instructions provided in the project's README file:
+.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Usage
+The application provides a user-friendly interface for uploading and processing .zip files. Detailed instructions on how to use the project can be found in the README file:
+.
 
-Things you may want to cover:
+Deployment
+The project uses a Procfile.dev for local development:
 
-* Ruby version
+Contributing
+If you wish to contribute to the project, please follow the guidelines provided in the README file:
+.
 
-* System dependencies
+License
+Information about the project's license can be found in the README file:
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Contact
+For any further questions or feedback, please refer to the contact information provided in the project's README file.
