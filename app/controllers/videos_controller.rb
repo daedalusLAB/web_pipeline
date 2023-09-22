@@ -35,6 +35,7 @@ class VideosController < ApplicationController
 
         # send the video to the pipeline
         Pipeline01Job.perform_async(@video.id)
+        PipelineMailer.with(user: @video.user, status: @video.status).status_email.deliver_now
         #format.html { redirect_to video_url(@video), notice: "Video was successfully created." }
         format.json { render :show, status: :created, location: @video }
         # redirect to the videos index page

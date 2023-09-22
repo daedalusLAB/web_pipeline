@@ -70,9 +70,9 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
-  config.action_mailer.default_url_options = { host: <%= ENV["URL_HOST"] %>, port: <%= ENV["URL_PORT"] %> }
+  config.action_mailer.default_url_options = { host:  ENV["URL_HOST"] , port: ENV["URL_PORT"] }
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: <%= ENV["EMAIL_FROM"] %>}
+  config.action_mailer.default_options = {from: ENV["EMAIL_FROM"]}
 end

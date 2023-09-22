@@ -17,6 +17,7 @@
     <thead>
       <tr>
         <th>Name</th>
+        <th>Date</th>
         <th>Status</th>
         <th>Filename</th>
         <th>Action</th>
@@ -26,6 +27,7 @@
       <% @videos.each do |video| %>
         <tr>
           <td><%= video.name %></td>
+          <td><%= video.created_at.strftime("%d/%m/%Y %H:%M") %></td>
           <td><span class="badge bg-warning"><%= video.status %></span></td>
           <td><%= video.zip_url.split('/').last %></td>
           <% if video.status == "Processed" %>
