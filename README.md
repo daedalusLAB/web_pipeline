@@ -21,3 +21,19 @@ Information about the project's license can be found in the README file:
 
 Contact
 For any further questions or feedback, please refer to the contact information provided in the project's README file.
+
+
+# Installation
+
+## Prerequisites
+
+Install rvm
+
+install openpose
+
+install conda
+
+create a conda environment with python 3.10 
+
+install requirements.txt
+
