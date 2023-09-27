@@ -34,7 +34,7 @@
             <% else %>
             <span class="badge bg-warning"><%= video.status %></span></td>
             <% end %>
-          <td><%= link_to video.zip_url.split('/').last, video.zip_url, class: "btn" %></td>
+          <td><%= link_to video.zip_url.split('/').last, video.zip_url, class: "btn btn-light" %></td>
           
           <% if video.status == "Processed" %>
             <td>              

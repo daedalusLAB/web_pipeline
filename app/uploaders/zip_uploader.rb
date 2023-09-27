@@ -13,6 +13,11 @@ class ZipUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  # File size validation
+  def size_range
+    1..50.megabytes
+  end
+
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:
@@ -38,6 +43,14 @@ class ZipUploader < CarrierWave::Uploader::Base
   # def extension_allowlist
   #   %w(jpg jpeg gif png)
   # end
+  def extension_allowlist
+    %w(zip)
+  end
+
+  def content_type_allowlist
+    # allow application/zip and application/x-zip-compressed
+    %w(application/zip application/x-zip-compressed)
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.

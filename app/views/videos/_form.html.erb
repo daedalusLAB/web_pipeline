@@ -13,17 +13,19 @@
     </div>
   <% end %>
 
+
   <div class="form-group mb-3">
-    <%= form.label :name, class: "form-label" %>
-    <%= form.text_field :name, class: "form-control" %>
+    <%= form.label "Name of the task", class: "form-label" %>
+    <%= form.text_field :name, class: "form-control", placeholder: "Enter a recognizable name for the task. At the end it will be the name of the resultant .zip file", autofocus: true %>
   </div>
 
   <div class="form-group mb-3">
-    <%= form.label :zip, class: "form-label" %>
-    <%= form.file_field :zip, class: "form-control-file" %>
+    <%= form.label ".zip file", class: "form-label" %>
+    <%= form.file_field :zip, class: "form-control-file", accept: ".zip" %>
   </div>
 
   <div class="form-group">
     <%= form.submit "Upload zip", class: "btn btn-warning" %>
   </div>
+
 <% end %>

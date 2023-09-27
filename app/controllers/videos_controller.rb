@@ -43,7 +43,7 @@ class VideosController < ApplicationController
         #format.html { redirect_to video_url(@video), notice: "Video was successfully created." }
         format.json { render :show, status: :created, location: @video }
         # redirect to the videos index page
-        format.html { redirect_to videos_url, notice: "Zip was successfully created." }
+        format.html { redirect_to videos_url, notice: "Task was successfully created." }
 
       else
         @video.status = "Failed"
@@ -82,7 +82,7 @@ class VideosController < ApplicationController
 
 
     respond_to do |format|
-      format.html { redirect_to videos_url, notice: "Zip was successfully destroyed." }
+      format.html { redirect_to videos_url, notice: "Task was successfully destroyed." }
       format.json { head :no_content }
     end
   end
