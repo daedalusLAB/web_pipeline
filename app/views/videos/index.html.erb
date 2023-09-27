@@ -19,8 +19,8 @@
         <th>Name</th>
         <th>Date</th>
         <th>Status</th>
-        <th>Filename</th>
-        <th>Action</th>
+        <th>Original File</th>
+        <th>Result</th>
       </tr>
     </thead>
     <tbody>
@@ -29,7 +29,8 @@
           <td><%= video.name %></td>
           <td><%= video.created_at.strftime("%d/%m/%Y %H:%M") %></td>
           <td><span class="badge bg-warning"><%= video.status %></span></td>
-          <td><%= video.zip_url.split('/').last %></td>
+          <td><%= link_to video.zip_url.split('/').last, video.zip_url, class: "btn" %></td>
+          
           <% if video.status == "Processed" %>
             <td>              
               <%= link_to "Download", "/uploads/video/zip/#{video.id}/#{video.name}.zip", class: "btn btn-warning" %>              
