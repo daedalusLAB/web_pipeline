@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 # pipeline.sh /export/home/raul/miscosas/repos/web_pipeline/public/uploads/video/zip/12/approach.zip "Prueba de pepito"
 
@@ -33,7 +33,8 @@ done
     
 
 # activate the virtual environment for python
-eval "$(conda shell.bash hook)"
+#eval "$(conda shell.bash hook)"
+source /home/raul/conda/etc/profile.d/conda.sh 
 conda activate web_pipeline
 
 # for all the videos in the folder people, run whisper_timestamped
@@ -42,7 +43,13 @@ conda activate web_pipeline
 for f in "$(dirname "$1")/$(basename "$2")/people"/*.mp4; do
     # remove the extension for output_dir
     output_dir="${f%.*}"
-    whisper_timestamped "$f" --model large --accurate --output_dir "$output_dir/words_alignment" --output_format csv --punctuations_with_words False
+    people_dir="$(dirname "$1")/$(basename "$2")/people"
+
+    whisper_timestamped "$f" --model large --accurate --output_dir "$output_dir/words_alignment" --output_format all --punctuations_with_words False
+    # copy "$output_dir/words_alignment"filename.mp4.srt to $1 filename.srt removing .mp4  to have subtitles in same folder than the video
+    echo "cp $output_dir/words_alignment/$(basename "$f").srt" $people_dir/"$(basename "$f" .mp4).srt"
+    cp "$output_dir/words_alignment/$(basename "$f").srt" $people_dir/"$(basename "$f" .mp4).srt"
+
 done
 
 # for all the videos in the folder people, run speech_analysis
