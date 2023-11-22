@@ -34,11 +34,11 @@
             <% else %>
             <span class="badge bg-warning"><%= video.status %></span></td>
             <% end %>
-          <td><%= link_to video.zip_url.split('/').last, video.zip_url, class: "btn btn-light" %></td>
+          <td><%= link_to video.zip_url.split('/').last, ENV["RAILS_RELATIVE_URL_ROOT"]+video.zip_url, class: "btn btn-light" %></td>
           
           <% if video.status == "Processed" %>
-            <td>              
-              <%= link_to "Download", "/uploads/video/zip/#{video.id}/#{video.name}.zip", class: "btn btn-warning" %>              
+            <td>                  
+              <%= link_to "Download", ENV["RAILS_RELATIVE_URL_ROOT"]+"/uploads/video/zip/#{video.id}/#{video.name}.zip", class: "btn btn-warning" %>              
             </td>
             <td>
               <%= link_to "Delete", video, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>

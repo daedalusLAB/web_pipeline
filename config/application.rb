@@ -11,8 +11,12 @@ module WebPipeline
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
     config.active_job.queue_adapter = :sidekiq
+    # if ENV[PASSENGER_SUBFOLDER] is defined 
+    if ENV['PASSENGER_SUBFOLDER']
+      config.relative_url_root = "/pipeline"
+    end
 
-
+    
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

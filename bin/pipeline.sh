@@ -47,9 +47,10 @@ for f in "$(dirname "$1")/$(basename "$2")/people"/*.mp4; do
 
     whisper_timestamped "$f" --model large --accurate --output_dir "$output_dir/words_alignment" --output_format all --punctuations_with_words False
     # copy "$output_dir/words_alignment"filename.mp4.srt to $1 filename.srt removing .mp4  to have subtitles in same folder than the video
-    echo "cp $output_dir/words_alignment/$(basename "$f").srt" $people_dir/"$(basename "$f" .mp4).srt"
-    cp "$output_dir/words_alignment/$(basename "$f").srt" $people_dir/"$(basename "$f" .mp4).srt"
-
+    echo "cp $output_dir/words_alignment/$(basename "$f").srt" "$people_dir/$(basename "$f" .mp4).srt"
+    cp "$output_dir/words_alignment/$(basename "$f").srt" "$people_dir/$(basename "$f" .mp4).srt"
+    
+    
 done
 
 # for all the videos in the folder people, run speech_analysis
