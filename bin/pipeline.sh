@@ -26,7 +26,7 @@ for f in "$(dirname "$1")/$(basename "$2")/people"/*; do
     f="${f%.*}"
     mkdir -p "$f/words_alignment"
     mkdir -p "$f/speech_analysis"
-    mkdir -p "$f/rawData/json_files"
+    mkdir -p "$f/rawData"
     mkdir -p "$f/skeleton"
 done
 
@@ -75,7 +75,7 @@ for f in "$(dirname "$1")/$(basename "$2")/people"/*.mp4; do
     f="$(realpath "$f")"
     # get absolute path of the output_dir
     output_dir="$(realpath "$output_dir")"
-    ./build/examples/openpose/openpose.bin --video "$f" --face --hand  --write_json "$output_dir/rawData/json_files" --display 0  --render_pose 0
+    ./build/examples/openpose/openpose.bin --video "$f" --face --hand  --write_json "$output_dir/rawData" --display 0  --render_pose 0
     ./build/examples/openpose/openpose.bin --video "$f" --write_video "$output_dir/skeleton/skeleton.avi" --display 0 --face 
 
 done
@@ -89,8 +89,9 @@ echo "--------------------------------------------------------------------------
 ls 
 for f in "$(dirname "$1")/$(basename "$2")/people"/*.mp4; do
     output_dir="${f%.*}"
-    echo "Rscript dfMakerexecute.R  $outputdir/rawData $output_dir/raw $output_dir/tidy"
-    Rscript dfMakerexecute.R  "$output_dir/rawData" "$output_dir/raw" "$output_dir/tidy"   
+    echo "Rscript run_dfMaker.R $output_dir/rawData $output_dir/dfMaker"
+    mkdir -p "$output_dir/dfMaker"
+    Rscript run_dfMaker.R "$output_dir/rawData" "$output_dir/dfMaker"
 
 done
 
