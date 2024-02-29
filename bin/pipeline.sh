@@ -30,12 +30,10 @@ for f in "$(dirname "$1")/$(basename "$2")/people"/*; do
     mkdir -p "$f/skeleton"
 done
 
-    
-
 # activate the virtual environment for python
 #eval "$(conda shell.bash hook)"
 source /home/raul/conda/etc/profile.d/conda.sh 
-conda activate web_pipeline
+conda activate web_pipeline_01
 
 # for all the videos in the folder people, run whisper_timestamped
 # example whisper_timestamped 2016-02-26_2200_US_CNN_Situation_Room_5467.7-5472.67_the_following_year.mp4 --model large --accurate --output_dir . --output_format csv
@@ -45,11 +43,11 @@ for f in "$(dirname "$1")/$(basename "$2")/people"/*.mp4; do
     output_dir="${f%.*}"
     people_dir="$(dirname "$1")/$(basename "$2")/people"
 
-    whisper_timestamped "$f" --model large --accurate --output_dir "$output_dir/words_alignment" --output_format all --punctuations_with_words False
+    whisperx --model large --output_format all --output_dir "$output_dir/words_alignment" "$f"
+
     # copy "$output_dir/words_alignment"filename.mp4.srt to $1 filename.srt removing .mp4  to have subtitles in same folder than the video
-    echo "cp $output_dir/words_alignment/$(basename "$f").srt" "$people_dir/$(basename "$f" .mp4).srt"
-    cp "$output_dir/words_alignment/$(basename "$f").srt" "$people_dir/$(basename "$f" .mp4).srt"
-    
+    echo "cp $output_dir/words_alignment/$(basename "$f" .mp4).srt" "$people_dir/$(basename "$f" .mp4).srt"
+    cp "$output_dir/words_alignment/$(basename "$f" .mp4).srt" "$people_dir/$(basename "$f" .mp4).srt"
     
 done
 
