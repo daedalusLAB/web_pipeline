@@ -1,5 +1,5 @@
 class AdminMailer < ApplicationMailer
-    default from: ENV['EMAIL_FROM']
+    default from: ENV['GMAIL_USER']
     layout 'mailer'
   
     def new_user_waiting_for_approval(email)
