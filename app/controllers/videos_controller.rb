@@ -1,8 +1,12 @@
 class VideosController < ApplicationController
-  before_action :set_video, only: %i[ show edit update destroy ]
+  before_action :set_video, only: %i[ show edit update destroy processed]
 
   # check if user is logged in
   before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: [:processed]
+
+  # check ip and token before_action for processed action
+  before_action :check_ip_and_token, only: [:processed]
 
   # GET /videos or /videos.json
   def index
@@ -87,6 +91,18 @@ class VideosController < ApplicationController
     end
   end
 
+
+  # To raise processed action just:
+  # curl curl http://localhost:3000/videos/41/processed\?token="123456"
+  def processed
+    @video.status = "Processed"
+    @video.save
+    # run job to exec pipeline_02_job.rb to scp zip file from hpc to local
+    Pipeline02Job.perform_async(@video.id)
+    redirect_to videos_url, notice: "Video was successfully processed. Copying files to local machine."
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_video
@@ -95,6 +111,27 @@ class VideosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def video_params
-      params.require(:video).permit(:name, :zip, :user_id)
+      params.require(:video).permit(:name, :zip, :user_id, :token)
     end
+
+    # check ip and token before_action for processed action
+    def check_ip_and_token
+      print "check_ip_and_token\n"
+      # check if the request is in the list of allowed IPs from .envfile
+      print "CURL FROM: #{request.remote_ip} \n"
+      print "ALLOWED_IPS: #{ENV['ALLOWED_IPS']} \n"
+      if ENV['ALLOWED_IPS'].split(",").include? request.remote_ip
+        # check if the token is correct
+        # print remote_ip
+        print "CURL FROM: #{request.remote_ip} \n"
+
+        if params[:token] == ENV['PROCESSED_TOKEN']
+          print "TOKEN: #{params[:token]} \n is correct"
+          return
+        end
+      end
+      # if the token is incorrect or the IP is not allowed, redirect to the root path
+      redirect_to root_path
+    end
+
 end

@@ -3,6 +3,12 @@ Sidekiq::Web.app_url = "/"
 
 Rails.application.routes.draw do
   resources :videos
+  # add videos/:id/processed route
+  resources :videos do
+    member do
+      get 'processed'
+    end
+  end
   devise_for :users
   get 'welcome/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
