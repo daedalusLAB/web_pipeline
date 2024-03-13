@@ -31,6 +31,12 @@
       <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
         <% if user_signed_in? %>
 
+          <% if current_user.admin? %>
+            <div class="nav-item">
+              <%= link_to "Users", admin_users_path, class: "nav-link active" %>
+            </div>
+          <% end %>
+
           <div class="nav-item">
             <%= link_to "Pipeline", videos_path, class: "nav-link active" %>
           </div>
