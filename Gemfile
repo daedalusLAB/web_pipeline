@@ -83,4 +83,3 @@ gem 'carrierwave'
 gem 'dotenv-rails'
 
 gem 'rolify'
-

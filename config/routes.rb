@@ -2,6 +2,13 @@ require "sidekiq/web"
 Sidekiq::Web.app_url = "/"
 
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :users, only: [:index] do
+      member do
+        patch :approve
+      end
+    end
+  end
   resources :videos
   # add videos/:id/processed route
   resources :videos do
