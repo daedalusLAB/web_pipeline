@@ -16,16 +16,15 @@ class Pipeline01Job
 
     # get the video
     video = Video.find(video_id)
-    # update the status of the video
-
     # exec pipeline script in the rails app bin folder to process the videos
     puts "**********************************************************************"
-    puts "bin/pipeline.sh #{video.zip.file.path}  \"#{video.name}\" \"#{video.id}\" \"#{hpc_user}\" \"#{hpc_host}\" \"#{hpc_key}\"  "
+    puts "bin/pipeline.sh #{video.zip.file.path}  \"#{video.name}\" \"#{video.id}\" \"#{hpc_user}\" \"#{hpc_host}\" \"#{hpc_key}\""
 
     dir_path = File.dirname(video.zip.file.path)
     log_file = "#{dir_path}/output_log.txt"
     # get the output of the script and print it to the console. If there is an error, it will be printed to the console
-    resultOK = system("bin/pipeline.sh #{video.zip.file.path}  \"#{video.name}\" \"#{video.id}\" \"#{hpc_user}\" \"#{hpc_host}\" \"#{hpc_key}\" > #{log_file} 2>&1 ")
+    resultOK = system("bin/pipeline.sh #{video.zip.file.path}  \"#{video.name}\" \"#{video.id}\" \"#{hpc_user}\" \"#{hpc_host}\" \"#{hpc_key}\"  ")
+    #resultOK = system("bin/pipeline.sh #{video.zip.file.path}  \"#{video.name}\" \"#{video.id}\" \"#{hpc_user}\" \"#{hpc_host}\" \"#{hpc_key}\" > #{log_file} 2>&1 ")
     if resultOK
     # update the status of the video
     video.status = "Processing"
