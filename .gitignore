@@ -40,3 +40,5 @@ public/uploads/
 .env
 
 .sidekiq.service
+
+*ssh.key*
