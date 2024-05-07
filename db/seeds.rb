@@ -8,5 +8,5 @@
 
 
 # create user for testing
-user = User.create(email: "raul@um.es", password: "123456", password_confirmation: "123456", confirmed_at: Time.now.utc)
+user = User.create(email: "raul@um.es", password: "123456", password_confirmation: "123456", confirmed_at: Time.now.utc, approved: true)
 user.add_role(:admin)
