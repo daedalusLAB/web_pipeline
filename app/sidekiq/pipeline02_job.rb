@@ -19,19 +19,26 @@ class Pipeline02Job
     # update the status of the video
 
     # EXEC SCP FROM HPC TO LOCAL MACHINE
-    # resultOK = system("scp -i #{hpc_key} #{hpc_user}@#{hpc_host}:~/pipeline/#{video_id}/#{video_id}_output/* #{video_id}_output/")
-
-    print("scp -o \"StrictHostKeyChecking no\" -i $hpc_key  $hpc_user@$hpc_host:MULTIDATA/$video_id/#{video.name}.zip #{dirname(video.zip.file.path)}")
-    #resultOK = system("scp -o \"StrictHostKeyChecking no\" -i $hpc_key  $hpc_user@$hpc_host:MULTIDATA/$video_id/#{video.name}.zip #{dirname(video.zip.file.path)}")
-    resultOK = true
+    #print("scp -o \"StrictHostKeyChecking no\" -i $hpc_key  $hpc_user@$hpc_host:MULTIDATA/$video_id/#{video.name}.zip #{File.dirname(video.zip.file.path)}")
+    resultOK = system("scp -o \"StrictHostKeyChecking no\" -i #{hpc_key}  #{hpc_user}@#{hpc_host}:\"MULTIDATA/#{video_id}/#{video.name}.zip\" #{File.dirname(video.zip.file.path)}")
+    #resultOK = true
+    print("RESULT OK OF SCP: #{resultOK}")
     if resultOK
     # update the status of the video
-    video.status = "Processed"
+      video.status = "Processed"
     else
       video.status = "Error"
     end
     video.save
     PipelineMailer.with(user: video.user, status: video.status).status_email.deliver_now
-
+    # delete remote folder MULTIDA/$video_id 
+    #print ("ssh -o \"StrictHostKeyChecking no\" -i #{hpc_key}  #{hpc_user}@#{hpc_host} \"rm -rf MULTIDATA/#{video_id}\"")
+    if video_id.is_a? Integer
+      print("Deleting remote folder MULTIDA/#{video_id}")
+      system("ssh -o \"StrictHostKeyChecking no\" -i #{hpc_key}  #{hpc_user}@#{hpc_host} \"rm -rf MULTIDATA/#{video_id}\"")
+    else
+      print("Error: video_id is not an integer")
+    end
+    
   end
 end

@@ -25,14 +25,15 @@ class Pipeline01Job
     # get the output of the script and print it to the console. If there is an error, it will be printed to the console
     resultOK = system("bin/pipeline.sh #{video.zip.file.path}  \"#{video.name}\" \"#{video.id}\" \"#{hpc_user}\" \"#{hpc_host}\" \"#{hpc_key}\"  ")
     #resultOK = system("bin/pipeline.sh #{video.zip.file.path}  \"#{video.name}\" \"#{video.id}\" \"#{hpc_user}\" \"#{hpc_host}\" \"#{hpc_key}\" > #{log_file} 2>&1 ")
+    puts "**********************************************************************"
+    puts "resultOK: #{resultOK}"
     if resultOK
     # update the status of the video
-    video.status = "Processing"
+      video.status = "Processing"
     else
       video.status = "Error"
     end
     video.save
     PipelineMailer.with(user: video.user, status: video.status).status_email.deliver_now
-
   end
 end

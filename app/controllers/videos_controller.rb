@@ -103,6 +103,16 @@ class VideosController < ApplicationController
   end
 
 
+  # To raise processed action just:
+  # curl curl http://localhost:3000/videos/41/processed\?token="123456"
+  def error
+    @video.status = "Error"
+    @video.save
+    # run job to exec pipeline_02_job.rb to scp zip file from hpc to local
+    redirect_to videos_url, notice: "Video was processed with error. Copying files to local machine."
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_video
@@ -124,12 +134,13 @@ class VideosController < ApplicationController
         # check if the token is correct
         # print remote_ip
         print "CURL FROM: #{request.remote_ip} \n"
+      end
 
-        if params[:token] == ENV['PROCESSED_TOKEN']
+      if params[:token] == ENV['PROCESSED_TOKEN']
           print "TOKEN: #{params[:token]} \n is correct"
           return
-        end
       end
+      print "****** TOKEN: #{params[:token]} is incorrect ********\n"
       # if the token is incorrect or the IP is not allowed, redirect to the root path
       redirect_to root_path
     end

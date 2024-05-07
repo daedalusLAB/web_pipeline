@@ -16,9 +16,16 @@ hpc_user="$4"
 hpc_host="$5"
 hpc_key="$6"
 
+echo "CREATE FOLDER AND COPY FILE"
 # create a remote folder with the id of the video
+echo " ssh -o \"StrictHostKeyChecking no\" -i $hpc_key $hpc_user@$hpc_host mkdir -p MULTIDATA/$video_id"
 ssh -o "StrictHostKeyChecking no" -i $hpc_key $hpc_user@$hpc_host mkdir -p MULTIDATA/$video_id
 # copy zip file to hpc server
+echo " ssh -o \"StrictHostKeyChecking no\" -i $hpc_key $zip_file $hpc_user@$hpc_host:MULTIDATA/$video_id/"
 scp -o "StrictHostKeyChecking no" -i $hpc_key $zip_file $hpc_user@$hpc_host:MULTIDATA/$video_id/
 # run the pipeline in the hpc server
-ssh -o "StrictHostKeyChecking no" -i $hpc_key $hpc_user@$hpc_host bash MULTIDATA/pipeline.sh MULTIDATA/$video_id/$filename $result_zip_file
+#echo "ssh -o \"StrictHostKeyChecking no\" -i $hpc_key $hpc_user@$hpc_host "sbatch MULTIDATA/pipeline.sh \"MULTIDATA/$video_id/$filename\" \"MULTIDATA/$video_id/$result_zip_file\""
+echo "execuiting sbatch"
+ssh -o "StrictHostKeyChecking no" -i $hpc_key $hpc_user@$hpc_host "sbatch MULTIDATA/pipeline.sh \"MULTIDATA/$video_id/$filename\" \"MULTIDATA/$video_id/$result_zip_file\""
+
+echo "SBATCH SENT TO HPC SERVER"
