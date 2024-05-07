@@ -2,3 +2,25 @@
 @import 'bootstrap-icons/font/bootstrap-icons';
 
 
+  html, body {
+    height: 100%;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;  // Ensure the minimum height is full viewport height
+  }
+  
+  .container {
+    flex: 1;  // Allows the container to expand and fill available space
+  }
+  
+  .footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: auto;  // Automatically margins top, pushing footer to bottom
+    width: 100%;
+  }
