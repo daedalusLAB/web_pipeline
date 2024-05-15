@@ -8,7 +8,10 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
-  config.hosts << "labyrinth01.inf.um.es"
+  config.hosts << "multidata.multimodalcorpora.org"
+  config.hosts << "localhost"
+   
+#  config.force_ssl = true
 
 
   # Do not eager load code on boot.
@@ -70,7 +73,7 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
-  config.action_mailer.default_url_options = { host:  ENV["URL_HOST"] , port: ENV["URL_PORT"] }
+  config.action_mailer.default_url_options = { host:  ENV["URL_HOST"] , port: ENV["URL_PORT"], protocol: ENV["URL_PROTOCOL"]}
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_options = {from: ENV["GMAIL_USER"]}

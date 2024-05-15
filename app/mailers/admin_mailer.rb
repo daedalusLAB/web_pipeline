@@ -7,4 +7,9 @@ class AdminMailer < ApplicationMailer
       admin_email = ENV['ADMIN_EMAIL']
       mail(to: admin_email, subject: 'New user awaiting admin approval')
     end
+
+    def user_approved(email)
+      mail(to: email, subject: 'Your account has been approved')
+    end
+
 end

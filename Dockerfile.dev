@@ -3,9 +3,10 @@ FROM ruby:3.2.2
 
 # Layer 1. Updating and installing the necessary software for the Web server. Cleansing to reduce image size.
 RUN apt-get update -qq && apt-get install --no-install-recommends -y \
-  build-essential libpq-dev && \
+  build-essential libpq-dev npm && \
   apt-get clean && \
-  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+  npm install --global yarn
 
 # Layer 2. Creating environment variables which used further in Dockerfile.
 ENV APP_HOME /app

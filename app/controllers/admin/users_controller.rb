@@ -10,6 +10,7 @@ class Admin::UsersController < ApplicationController
     user = User.find(params[:id])
     if params[:commit] == 'approve'
       user.update(approved: true) # Assummig you have an `approved` attribute in your User model
+      AdminMailer.user_approved(user.email).deliver
       redirect_to admin_users_path, notice: 'User approved successfully.'
     elsif params[:commit] == 'disapprove'
       if user.admin?

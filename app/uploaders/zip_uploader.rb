@@ -15,7 +15,7 @@ class ZipUploader < CarrierWave::Uploader::Base
 
   # File size validation
   def size_range
-    1..50.megabytes
+    1..500.megabytes
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -57,6 +57,9 @@ class ZipUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+  def filename
+    original_filename.gsub(/([\s\-_\[\]\{\}\*\']|%20)+/i, "-") if original_filename
+  end
 
   def move_to_cache
     true
