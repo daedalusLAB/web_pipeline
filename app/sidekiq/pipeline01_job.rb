@@ -27,13 +27,10 @@ class Pipeline01Job
     #resultOK = system("bin/pipeline.sh #{video.zip.file.path}  \"#{video.name}\" \"#{video.id}\" \"#{hpc_user}\" \"#{hpc_host}\" \"#{hpc_key}\" > #{log_file} 2>&1 ")
     puts "**********************************************************************"
     puts "resultOK: #{resultOK}"
-    if resultOK
-    # update the status of the video
-      video.status = "Processing"
-    else
+    if !resultOK
       video.status = "Error"
+      video.save
+      PipelineMailer.with(user: video.user, status: video.status).status_email.deliver_now
     end
-    video.save
-    PipelineMailer.with(user: video.user, status: video.status).status_email.deliver_now
   end
 end

@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :videos do
     member do
       get 'processed'
+      get 'processing'
+      get 'error'
     end
   end
   devise_for :users

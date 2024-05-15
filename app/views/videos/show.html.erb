@@ -1,9 +1,17 @@
-<h1>Delete "<%= @video.name %>" zip file</h1>
-
-
-<div>
-  <%= button_to "Destroy this zip", @video, method: :delete , data: { confirm: "Are you sure?" } , class: "btn btn-danger" %>
-  <br>
-  <%= button_to "Back", videos_path,  method: :get, class: "btn btn-warning" %>
-
+<%# app/views/videos/destroy.html.erb %>
+<div class="container mt-3">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card shadow">
+        <div class="card-body">
+          <h1 class="card-title">Delete "<%= @video.name %>" task, zip file and results</h1>
+          <p class="card-text">Are you sure you want to delete this zip file? This action cannot be undone.</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+            <%= button_to "Destroy this zip", @video, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-lg btn-block" %>
+            <%= button_to "Back", videos_path, method: :get, class: "btn btn-warning btn-lg btn-block" %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

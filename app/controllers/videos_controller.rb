@@ -1,12 +1,12 @@
 class VideosController < ApplicationController
-  before_action :set_video, only: %i[ show edit update destroy processed]
+  before_action :set_video, only: %i[ show edit update destroy processed processing error ]
 
   # check if user is logged in
   before_action :authenticate_user!
-  skip_before_action :authenticate_user!, only: [:processed]
+  skip_before_action :authenticate_user!, only: [:processed, :processing, :error]
 
   # check ip and token before_action for processed action
-  before_action :check_ip_and_token, only: [:processed]
+  before_action :check_ip_and_token, only: [:processed, :processing, :error]
 
   # GET /videos or /videos.json
   def index
@@ -91,9 +91,6 @@ class VideosController < ApplicationController
     end
   end
 
-
-  # To raise processed action just:
-  # curl curl http://localhost:3000/videos/41/processed\?token="123456"
   def processed
     @video.status = "Processed"
     @video.save
@@ -102,16 +99,19 @@ class VideosController < ApplicationController
     redirect_to videos_url, notice: "Video was successfully processed. Copying files to local machine."
   end
 
+  def processing
+    @video.status = "Processing"
+    @video.save
+    PipelineMailer.with(user: @video.user, status: @video.status).status_email.deliver_now
+    redirect_to videos_url, notice: "Video is processing."
+  end
 
-  # To raise processed action just:
-  # curl curl http://localhost:3000/videos/41/processed\?token="123456"
   def error
     @video.status = "Error"
     @video.save
-    # run job to exec pipeline_02_job.rb to scp zip file from hpc to local
+    PipelineMailer.with(user: @video.user, status: @video.status).status_email.deliver_now
     redirect_to videos_url, notice: "Video was processed with error. Copying files to local machine."
   end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.
