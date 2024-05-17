@@ -4,15 +4,19 @@ class Video < ApplicationRecord
     validates :zip, presence: true
     belongs_to :user
 
-    # validate that name only contains letters, numbers, and spaces. If error, display message "Name can only contain letters, numbers, and spaces."
-    #validates_format_of :name, :with => /\A[a-zA-Z0-9 ]+\z/ 
-    validates_format_of :name, :with => /\A[a-zA-Z0-9 ]+\z/, :message => "can only contain letters, numbers, and spaces."
-
+    # validate that name only contains letters, numbers, and spaces. If error, display message "Name can only contain letters, numbers, - and _"
+    validates_format_of :name, :with => /\A[A-Za-z0-9\-_]+\z/, :message => "can only contain letters, numbers, hypen and underscore"
+    
     # validate zip filename does not contain spaces. If error, display message "File name cannot contain spaces."
     validate :validate_zip
 
     # validate that the file has no spaces and only 1 '.' and ends in .zip
     def validate_zip
+        # if zip.file.original_filename.include is nil the add error as missing file
+        if zip.file.nil?
+            errors.add(:zip, "Missing file.")
+            return
+        end
         # check for spaces
         if zip.file.original_filename.include? " "
             errors.add(:zip, "File name cannot contain spaces.")
