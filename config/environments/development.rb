@@ -63,7 +63,16 @@ Rails.application.configure do
   config.active_record.verbose_query_logs = true
 
   # Suppress logger output for asset requests.
-  config.assets.quiet = true
+  #config.assets.quiet = true
+
+  # Disable concatenation and preprocessing of assets.
+  config.assets.debug = true
+
+  # Supposed to fall back to assets pipeline if a precompiled asset is missed.
+  config.assets.compile = true
+
+  # Enable or disable caching of classes. Set to false when debugging or in production.
+  config.cache_classes = false
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true

@@ -25,8 +25,15 @@
     width: 100%;
   }
 
-  .page-link.active {
-    z-index: 3;
+  .active{
+    color: #ffc107;
     background-color: #ffc10750;
-    border-color: #FFC107;
+    border-color: #ffc107;
+  }
+
+  .page-link.active, .active > .page-link {
+    z-index: 3;
+    color: #ffc107;
+    background-color: #ffc10720;
+    border-color: #ffc107;
   }

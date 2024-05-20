@@ -6,7 +6,8 @@ RUN apt-get update -qq && apt-get install --no-install-recommends -y \
   build-essential libpq-dev npm && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-  npm install --global yarn
+  npm install --global yarn && npm install -g esbuild
+
 
 # Layer 2. Creating environment variables which used further in Dockerfile.
 ENV APP_HOME /app
@@ -28,6 +29,9 @@ COPY . .
 
 # Layer 8. Make file executable
 RUN chmod +x ./dev-docker-entrypoint.sh
+
+# Asset precompilation
+RUN bundle exec rake assets:precompile
 
 # Layer 9. Run migrations
 ENTRYPOINT ["./dev-docker-entrypoint.sh"]
