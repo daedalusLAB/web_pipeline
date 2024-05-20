@@ -24,3 +24,9 @@
     margin-top: auto;  // Automatically margins top, pushing footer to bottom
     width: 100%;
   }
+
+  .page-link.active {
+    z-index: 3;
+    background-color: #ffc10750;
+    border-color: #FFC107;
+  }

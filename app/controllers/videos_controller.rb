@@ -13,9 +13,9 @@ class VideosController < ApplicationController
     # get all videos ordered by created_at
     #@videos = Video.order(created_at: :desc)
     if current_user.admin?
-      @videos = Video.order(created_at: :desc)
+      @videos = Video.order(created_at: :desc).page(params[:page]).per(10)
     else
-      @videos = current_user.videos.order(created_at: :desc)
+      @videos = current_user.videos.order(created_at: :desc).page(params[:page]).per(10)
     end
   end
 
