@@ -1,0 +1,36 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Posts</h1>
+<div class="container mt-2">
+  <% if @posts.any? %>
+    <div class="row">
+      <% @posts.each do |post| %>
+        <div class="col-md-12 mb-12">
+          <div class="card mt-2">
+            <div class="card-body">
+              <h5 class="card-title"><%= post.title %></h5>
+              <h6 class="card-subtitle mb-2 text-muted">Published: <%= post.created_at.strftime("%B %d, %Y") if post.created_at %></h6>
+              <p class="card-text"><%= markdown_to_html(post.content) %></p>
+              <%= link_to 'Edit', edit_post_path(post), class: 'card-link btn btn-warning' %>
+              <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'card-link btn btn-danger' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-center">No posts found.</p>
+  <% end %>
+</div>
+
+<div class="container mt-2"> 
+  <div class="row">
+    
+    <div class="col-md-12">
+      <%= link_to "New post", new_post_path, class: "btn btn-warning" %>
+      <%= paginate @posts %>
+    </div>
+  </div>
+  
+</div>
+
