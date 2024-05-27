@@ -1,33 +1,47 @@
-
-<footer class="footer mt-2">
-    
-    <div class="row">
-        <div class="col-md-3">
-            <h4></h4>
-            <%= image_tag "logoUMU.jpg", :alt => "Logo Universidad Murcia", :class => "img-fluid rounded", :height => "50%", :"max-width" => "100px" %>
+<footer class="footer mt-5">
+    <div class="container">
+        <!-- Logos Row -->
+        <div class="row">
+            <div class="col-md-3">
+                <%= image_tag "logoUMU.jpg", alt: "Logo Universidad Murcia", class: "img-fluid rounded", height: "50%", max_width: "100px" %>
+            </div>
+            <div class="col-md-3">
+                <%= image_tag "logoFAU.jpg", alt: "Logo FAU University", class: "img-fluid rounded", height: "50%", max_width: "100px" %>
+            </div>
+            <div class="col-md-3">
+                <%= image_tag "logoRadboud.jpg", alt: "Logo Radboud University", class: "img-fluid rounded", height: "50%", max_width: "100px" %>
+            </div>
+            <div class="col-md-3">
+                <%= image_tag "logoEU.jpg", alt: "Logo European Union", class: "img-fluid rounded", height: "50%", max_width: "100px" %>
+            </div>
         </div>
-        <div class="col-md-3">
-            <h4></h4>
-            <%= image_tag "logoFAU.jpg", :alt => "Logo FAU University", :class => "img-fluid rounded", :height => "50%", :"max-width" => "100px" %>
-            <ul>
-                
-            </ul>
+        <!-- Information Row -->
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <h4>Contact Us</h4>
+                <p><a href="mailto:info@multidatapipeline.com">info@multidatapipeline.com</a></p>
+            </div>
+            <div class="col-md-4">
+                <h4>Follow Us</h4>
+                <ul class="list-unstyled">
+                    <li><a href="https://www.facebook.com/MultiDataPipeline"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                    <li><a href="https://www.twitter.com/MultiDataPipeline"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="https://www.instagram.com/MultiDataPipeline"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="https://www.linkedin.com/company/multidatapipeline"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4>Newsletter</h4>
+                <a href="#">Suscribe to our newsletter</a>
+            </div>
+        
         </div>
-        <div class="col-md-3">
-            <h4></h4>
-            <%= image_tag "logoRadboud.jpg", :alt => "Logo Max Planck Institute", :class => "img-fluid rounded", :height => "50%", :"max-width" => "100px" %>
-            <ul>
-                
-            </ul>
+        <!-- Copyright -->
+        <div class="row">
+            <div class="col-12 mt-3">
+                <p>Funded by the European Union. Neither the European Union nor EACEA can be held responsible for views expressed.</p>
+                <p>Copyright &copy; <%= Time.now.year %> MultiData Pipeline</p>
+            </div>
         </div>
-        <div class="col-md-3">
-            <h4></h4>
-            <%= image_tag "logoEU.jpg", :alt => "Logo Radboud University", :class => "img-fluid rounded", :height => "50%", :"max-width" => "100px" %>
-
-            <ul>
-                
-            </ul>
-        </div>
-    <p>Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the European Education and Culture Executive Agency (EACEA). Neither the European Union nor EACEA can be held responsible for them.</p>
-    <p>Copyright &copy; <%= Time.now.year %> MultiData Pipeline</p>
+    </div>
 </footer>
