@@ -10,4 +10,7 @@ class WelcomeController < ApplicationController
                   .order(order: :asc)
     end
   end
+
+  def faq
+  end
 end

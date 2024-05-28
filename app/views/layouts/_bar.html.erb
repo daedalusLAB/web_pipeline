@@ -39,15 +39,22 @@
               <%= link_to "News", posts_path, class: "nav-link active" %>
             </div>
           <% end %>
-
           <div class="nav-item">
             <%= link_to "Pipeline", videos_path, class: "nav-link active" %>
+          </div>
+          <div class="nav-item">
+            <%= link_to "FAQ", welcome_faq_path , class: "nav-link active" %>
           </div>
           <div class="nav-item">
             <%= link_to "Log out", sign_out_path, class: "nav-link active " %>
           </div>
         <% else %>
-          <%= link_to "Log in", new_user_session_path, class: "nav-link active" %>
+          <div class="nav-item">
+            <%= link_to "FAQ", welcome_faq_path , class: "nav-link active" %>
+          </div>
+          <div class="nav-item">
+            <%= link_to "Log in", new_user_session_path, class: "nav-link active" %>
+          </div>
         <% end %>
       </ul>
     </div>
