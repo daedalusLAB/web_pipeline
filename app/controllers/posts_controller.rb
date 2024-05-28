@@ -6,9 +6,6 @@ before_action :authenticate_user!
 before_action :check_admin
   # authenticate before any action
 
-
-
-
   # GET /posts or /posts.json
   def index
     @posts = Post.all.page(params[:page]).per(10)
@@ -73,7 +70,7 @@ before_action :check_admin
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :content, :published, :order)
+      params.require(:post).permit(:title, :content, :published, :order, :private)
     end
 
     def check_admin
