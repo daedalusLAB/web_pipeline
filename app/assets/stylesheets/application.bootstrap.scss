@@ -26,18 +26,18 @@
   }
 
   .active{
-    color: #ffc107;
+    color: #020202;
     background-color: #ffc10750;
     border-color: #ffc107;
   }
 
   .page-link.active, .active > .page-link {
     z-index: 3;
-    color: #ffc107;
+    color: #000000;
     background-color: #ffc10720;
     border-color: #ffc107;
   }
-
+  
   a{
     color: #ffc107;
   }
