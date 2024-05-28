@@ -1,7 +1,10 @@
-<p>Hello <%= @email %>!</p>
+<p>Hello <%= @email %> from the MULTIDATA support team!</p>
+
 
 <% if @resource.try(:unconfirmed_email?) %>
-  <p>We're contacting you to notify you that your email is being changed to <%= @resource.unconfirmed_email %>.</p>
+<p>We're contacting you to notify you that your MULTIDATA log in email is being changed to <%= @resource.unconfirmed_email %>.</p>
 <% else %>
-  <p>We're contacting you to notify you that your email has been changed to <%= @resource.email %>.</p>
+<p>We're contacting you to notify you that your MULTIDATA log in email has been changed to <%= @resource.email %>.</p>
 <% end %>
+
+<p>If you don‘t recognize this activity, please contact our support team at <%= ENV['GMAIL_USER'] %>.</p>

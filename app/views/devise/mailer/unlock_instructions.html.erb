@@ -1,7 +1,9 @@
-<p>Hello <%= @resource.email %>!</p>
+<p>Hello <%= @resource.email %> from the MULTIDATA support team!</p>
 
 <p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
 
 <p>Click the link below to unlock your account:</p>
 
 <p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>
+
+<p>If you don‘t recognize this activity, please contact our support team at <%= ENV['GMAIL_USER'] %>.</p>
