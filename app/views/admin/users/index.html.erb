@@ -17,9 +17,9 @@
             <td><%= user.created_at.strftime("%B %d, %Y")%></td>
             <td class="center">
                 <% if user.approved? %>
-                    <span class="btn btn-success"> </span>
+                    <i class="fa-solid fa-thumbs-up"></i>
                 <% else %>
-                    <span class="btn btn-danger"> </span>
+                    <i class="fa-solid fa-thumbs-down"></i>
                 <%end%>
             </td>
 
