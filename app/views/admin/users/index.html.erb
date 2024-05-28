@@ -6,7 +6,7 @@
       <tr>
         <th>Email</th>
         <th>Access date</th>
-        <th>Approved?</th>
+        <th>Status</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -20,6 +20,9 @@
                     <i class="fa-solid fa-thumbs-up"></i>
                 <% else %>
                     <i class="fa-solid fa-thumbs-down"></i>
+                <%end%>
+                <% if user.admin? %>
+                    <i class="fa-solid fa-crown"></i>
                 <%end%>
             </td>
 
