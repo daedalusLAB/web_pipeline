@@ -28,7 +28,7 @@
         </li> %>
       </ul>
 
-      <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav ml-auto mb-2 mb-lg-0 ms-auto">
         <% if user_signed_in? %>
 
           <% if current_user.admin? %>
@@ -45,9 +45,20 @@
           <div class="nav-item">
             <%= link_to "FAQ", welcome_faq_path , class: "nav-link active" %>
           </div>
-          <div class="nav-item">
-            <%= link_to "Log out", sign_out_path, class: "nav-link active " %>
+
+          <div class="nav-item dropdown">
+            <%= link_to "#", {class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: {bs_toggle: "dropdown"}, aria_expanded: "false"} do %>
+              <%= current_user.email %> <!-- This assumes you have a current_user helper method -->
+            <% end %>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><%= link_to "Edit my user", edit_user_registration_path, class: "dropdown-item nav-link active" %></li> <!-- Adjust path as needed -->
+              <li><%= link_to "Logout", sign_out_path, method: :delete, class: "dropdown-item nav-link active" %> </li>
+            </ul>
           </div>
+          <div class="nav-item">
+            <%= link_to "", "#" , class: "nav-link active" %>
+          </div>
+
         <% else %>
           <div class="nav-item">
             <%= link_to "FAQ", welcome_faq_path , class: "nav-link active" %>

@@ -38,6 +38,30 @@
     border-color: #ffc107;
   }
   
+  .dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #ffc107;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;  // Adjust if it does not perfectly align vertically
+    right: 0;
+    left: auto;  // Resets any other left positioning
+    z-index: 1000;  // Keeps it on top of other content
+    background-color: #ffc107;
+  }
+
+  .nav-item {
+    position: relative; /* This is for the dropdown parent */
+  }
+
+  .navbar-nav > .nav-item:last-child {
+    margin-right: 15px !important;
+  }
+
+
   a{
     color: #ffc107;
   }
