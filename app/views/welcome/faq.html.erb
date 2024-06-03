@@ -5,50 +5,125 @@
 <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        What is your project's main objective?
+        What is the main objective of MULTIDATA??
     </button>
     </h2>
     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
     <div class="accordion-body">
-        Our project's main objective is to provide a comprehensive solution for managing your tasks efficiently using state-of-the-art technology and user-friendly interfaces.
+        MULTIDATA aims to provide a comprehensive solution for managing your multimodal analysis tasks using state-of-the-art technology and user-friendly interfaces.
     </div>
     </div>
 </div>
+
 <div class="accordion-item">
     <h2 class="accordion-header" id="headingTwo">
     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        How can I get started with your project?
+        Who can join the MULTIDATA family? Do I need anything special to use its services?
     </button>
     </h2>
     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
     <div class="accordion-body">
-        To get started, you can sign up on our website and follow the onboarding guide provided. We offer a step-by-step tutorial to help you familiarize yourself with our features.
+        In this initial test phase, only selected users with a research profile can use the MULTIDATA platform. In the following moths, MULTIDATA will be available for anybody interested in multimodal data analysis. After signing up on our website, all you need to use MULTIDATA is a computer and internet connection.
     </div>
     </div>
 </div>
+
 <div class="accordion-item">
     <h2 class="accordion-header" id="headingThree">
     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        What support options are available?
+        How can users learn to exploit the key features of MULTIDATA?
     </button>
     </h2>
     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
     <div class="accordion-body">
-        We offer 24/7 support through our help center, including live chat, email support, and an extensive knowledge base with articles and tutorials.
+        To get started, we offer a step-by-step tutorial to help you familiarize yourself with our key features.
     </div>
     </div>
 </div>
+
+
 <div class="accordion-item">
     <h2 class="accordion-header" id="headingFour">
     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-        Can I integrate your solution with other tools?
+        Where is my data being processed?
     </button>
     </h2>
     <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
     <div class="accordion-body">
-        Yes, our solution supports integration with various third-party tools such as Slack, Google Drive, and Trello. Detailed instructions for integrations can be found in our documentation.
+        Your uploaded files will be processed in the Erlangen National High Performance Computing Center (NHR@FAU). Once it is processed, it is deleted from the cluster, but still available in this web application. Unless you delete the task once it is completed, the information will still be stored in the MULTIDATA server.
     </div>
     </div>
+</div>
+
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingFive">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+        How can I contact the MULTIDATA support team?
+    </button>
+    </h2>
+    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+            You can contact us via email at <a href="mailto:<%= ENV["GMAIL_USER"]%> "><%= ENV["GMAIL_USER"]%></a> or by filling out the contact form on our website.
+        </div>
+    </div>
+</div>
+
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingSix">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+        Where can I find out more information about the Privacy Policy and Terms of Service of MULTIDATA?
+    </button>
+    </h2>
+    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
+    <div class="accordion-body">
+        Read our Privacy Policy and Terms of Service for more information.    
+    </div>
+    </div>
+</div>
+
+
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingSeven">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+        How can I delete my MULTIDATA account?
+    </button>
+    </h2>
+    <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#faqAccordion">
+    <div class="accordion-body">
+        Click on the "Edit my user" link in the dropdown menu and then click on the "Cancel my account" button.    
+    </div>
+    </div>
+</div>
+
+
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingEight">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+        Can I share the data obtained from the pipeline?
+    </button>
+    </h2>
+    <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+            You can share the metadata provided by the MULTIDATA tools of analysis, always following the data protection, intellectual property, and ethical regulations applicable to your data and to your research. We kindly ask you to cite the MULTIDATA platform and the relevant software used by us to perform the analysis of your data.   
+        </div>
+    </div>
+</div>
+
+
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingNine">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+        How to cite MULTIDATA?
+    </button>
+    </h2>
+    <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#faqAccordion">
+    <div class="accordion-body">
+        We suggest that you cite us in the following or a similar way: "the materials for this study were analyzed for speech transcription and alignment, body key point detection, automatic speech analysis... (all that apply) by the Erasmus Plus MULTIDATA platform (website, publication of reference), using Whisper (publication of reference) OpenPose (publication of reference), PRAAT (publication of reference), dfmaker for coordinate normalization (publication of reference)... (all that apply).   
+    </div>
+    </div>
+</div>
+
+
 </div>
 </div>
 </div>
