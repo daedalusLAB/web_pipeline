@@ -1,16 +1,72 @@
 <h1>Welcome to the pipeline processing page!</h1>
 <p>Here, you can easily upload your .zip file and have it processed through our pipeline for further analysis or transformation.</p>
 
-  <h2>Pipeline steps:</h2>
-  <ol>
-      <li>Upload your .zip file: Simply click on the "Upload" button and select the .zip file you wish to process. Once uploaded, the file will be placed in a queue and you will be notified that it is waiting its turn.</li>
-      <li>In the queue: Our system manages the processing of files in the order they are received. While your file is in the queue, it will wait for its turn to be processed. This ensures fairness and efficient resource utilization.</li>
-      <li>Pipeline execution: When your file reaches the front of the queue, it will be automatically processed through our pipeline. The pipeline consists of various steps, such as data extraction, analysis, or any custom transformations you have requested.</li>
-      <li>Task completion: Once the pipeline finishes processing your file, you will receive an email notification informing you that the task is complete. Additionally, the status of your task will be updated on the web page to "Completed."</li>
-      <li>Resulting .zip file: As a result of the pipeline execution, a new .zip file will be generated. This file will contain the processed output of your original file.</li>
-  </ol>
-
 <%= link_to "Upload zip", new_video_path, class: "btn btn-warning" %>
+<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#helpModal">
+  Help
+</button>
+
+<!-- Help Modal -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="helpModalLabel">Help Information</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>To upload your .zip file, simply click on the "Upload zip” button and select the .zip file you wish to process.</p>
+        <p><strong>Pipeline steps:</strong></p>
+        <p>The file will be placed in a queue and you will be notified when the task status changes.</p>
+        <p>Once the task is completed, a new .zip file will be generated. If you delete the task, both the original .zip file and the processed .zip file will be completely deleted from our system.</p>
+        <p><strong>Task status details</strong>:</p>
+        <div class="accordion" id="taskStatusAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingQueued">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseQueued" aria-expanded="true" aria-controls="collapseQueued">
+                Queued
+              </button>
+            </h2>
+            <div id="collapseQueued" class="accordion-collapse collapse show" aria-labelledby="headingQueued" data-bs-parent="#taskStatusAccordion">
+              <div class="accordion-body">
+                Your file is waiting for its turn to be processed. Our system manages the processing of files in the order they are received, ensuring fairness and efficient resource utilization.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingProcessing">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProcessing" aria-expanded="false" aria-controls="collapseProcessing">
+                Processing
+              </button>
+            </h2>
+            <div id="collapseProcessing" class="accordion-collapse collapse" aria-labelledby="headingProcessing" data-bs-parent="#taskStatusAccordion">
+              <div class="accordion-body">
+                Your file reached the front of the queue and it is being automatically processed through our pipeline.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingProcessed">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProcessed" aria-expanded="false" aria-controls="collapseProcessed">
+                Processed
+              </button>
+            </h2>
+            <div id="collapseProcessed" class="accordion-collapse collapse" aria-labelledby="headingProcessed" data-bs-parent="#taskStatusAccordion">
+              <div class="accordion-body">
+                The pipeline finished processing your file and a new .zip file has been generated. This file contains the processed output of your original file.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <div class="table-responsive">
   <table class="table table-striped">
