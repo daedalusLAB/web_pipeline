@@ -87,8 +87,14 @@
           <td>
             <% if video.status == "Error" %>
               <span class="badge bg-danger"><%= video.status %></span></td>
+            <% elsif video.status == "Processed" %>
+              <span class="badge bg-success"><%= video.status %></span></td>
+            <% elsif video.status == "Processing" %>
+              <span class="badge bg-info"><%= video.status %></span></td>
+            <% elsif video.status == "Queued" %>
+              <span class="badge bg-warning"><%= video.status %></span></td>
             <% else %>
-            <span class="badge bg-warning"><%= video.status %></span></td>
+              <span class="badge bg-warning"><%= video.status %></span></td>
             <% end %>
           <td><%= link_to video.zip_url.split('/').last, ENV["RAILS_RELATIVE_URL_ROOT"]+video.zip_url, class: "btn btn-light" %></td>
           
