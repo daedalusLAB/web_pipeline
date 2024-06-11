@@ -73,6 +73,9 @@
     <thead>
       <tr>
         <th>Name</th>
+        <% if current_user.admin? %>
+          <th>User</th>
+        <% end %>
         <th>Date</th>
         <th>Status</th>
         <th>Original File</th>
@@ -83,6 +86,9 @@
       <% @videos.each do |video| %>
         <tr>
           <td><%= video.name %></td>
+          <% if current_user.admin? %>
+            <td><%= video.user.email %></td>
+          <% end %>
           <td><%= video.created_at.strftime("%d/%m/%Y %H:%M") %></td>
           <td>
             <% if video.status == "Error" %>
