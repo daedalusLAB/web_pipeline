@@ -85,16 +85,16 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host:  ENV["URL_HOST"] , port: ENV["URL_PORT"], protocol: ENV["URL_PROTOCOL"]}
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: ENV["GMAIL_USER"]}
+  config.action_mailer.default_options = {from: ENV["MAIL_USER"]}
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               'gmail.com',
-    user_name:            ENV["GMAIL_USER"],
-    password:             ENV["GMAIL_PASS"],
-    authentication:       'plain',
+    address:              ENV["MAIL_SERVER"],
+    port:                 ENV["MAIL_PORT"],
+    domain:               ENV["MAIL_DOMAIN"],
+    user_name:            ENV["MAIL_USER"],
+    password:             ENV["MAIL_PASS"],
+    authentication:       ENV["MAIL_AUTHENTICATION"],
     enable_starttls_auto: true,
     open_timeout:         5,
     read_timeout:         5 
