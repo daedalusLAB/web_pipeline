@@ -109,7 +109,7 @@
               <%= link_to "Download", ENV["RAILS_RELATIVE_URL_ROOT"] + "/uploads/video/zip/#{video.id}/#{video.name}.zip", class: "btn btn-warning" %>     
             </td>
           <% end %>
-          <% if video.status == "Error" or video.status == "Processed" %>
+          <% if video.status == "Error" or video.status == "Processed" or current_user.admin? %>
             <td>
               <%= link_to "Delete", video, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
             </td>
