@@ -1,8 +1,8 @@
-<h2 class="mt-2">Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="row justify-content-center">
     <div class="col-md-5 mt-2">
+      <h3 class="mt-2">Log in</h3>
       <div class="form-group">
         <%= f.label :email, class: 'control-label' %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>

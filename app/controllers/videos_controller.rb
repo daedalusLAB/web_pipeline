@@ -47,7 +47,12 @@ class VideosController < ApplicationController
         #format.html { redirect_to video_url(@video), notice: "Video was successfully created." }
         format.json { render :show, status: :created, location: @video }
         # redirect to the videos index page
-        format.html { redirect_to videos_url, notice: "Task was successfully created." }
+        flash[:notice] = "OTRO"
+        format.html { 
+          flash[:notice] = "Video was successfully created."
+          flash[:info] = "REMEMBER TO REALOAD THIS PAGE WHEN YOU RECEIVE THE EMAIL THAT YOUR TASK HAS BEEN PROCESSED!" 
+          redirect_to videos_url
+        }
 
       else
         @video.status = "Failed"

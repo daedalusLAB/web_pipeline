@@ -1,10 +1,10 @@
-<h2 class="mt-2">Resend unlock instructions</h2>
 
 <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="row justify-content-center">
     <div class="col-md-5 mt-2">
+      <h3 class="mt-2">Resend unlock instructions</h3>
       <div class="form-group">
         <%= f.label :email, class: 'control-label' %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
