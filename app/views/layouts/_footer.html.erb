@@ -3,16 +3,24 @@
         <!-- Logos Row -->
         <div class="row">
             <div class="col-md-3  p-2">
-                <%= image_tag "logoUMU.jpg", alt: "Logo Universidad Murcia", class: "img-fluid rounded", style: 'height:80%;width:auto;' %>
+                <%= link_to "https://um.es", target: "_blank" do %>
+                    <%= image_tag "logoUMU.jpg", alt: "Logo Universidad Murcia", class: "img-fluid rounded", style: 'height:80%; width:auto;' %>
+                <% end %>            
             </div>
             <div class="col-md-3 p-2">
-                <%= image_tag "logoFAU.jpg", alt: "Logo FAU University", class: "img-fluid rounded", style: 'height:80%;width:auto;' %>
+                <%= link_to "https://fau.eu", target: "_blank" do %>
+                    <%= image_tag "logoFAU.jpg", alt: "Logo FAU University", class: "img-fluid rounded", style: 'height:80%;width:auto;' %>
+                <% end %>
             </div>
             <div class="col-md-3 p-2">
-                <%= image_tag "logoRadboud.jpg", alt: "Logo Radboud University", class: "img-fluid rounded", style: 'height:80%;width:auto;' %>
+                <%= link_to "https://www.ru.nl/", target: "_blank" do %>
+                    <%= image_tag "logoRadboud.jpg", alt: "Logo Radboud University", class: "img-fluid rounded", style: 'height:80%;width:auto;' %>
+                <% end %>
             </div>
             <div class="col-md-3 p-2">
-                <%= image_tag "logoEU.jpg", alt: "Logo European Union", class: "img-fluid rounded", style: 'height:80%;width:auto;' %>
+                <%= link_to "https://erasmus-plus.ec.europa.eu/", target: "_blank" do %>
+                    <%= image_tag "logoEU.jpg", alt: "Logo European Union", class: "img-fluid rounded", style: 'height:80%;width:auto;' %>
+                <% end %>
             </div>
         </div>
         <!-- Information Row -->
