@@ -1,0 +1,42 @@
+<h1>Admin Panel - Users</h1>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Access date</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+            <td><%= user.email %></td>
+            <td><%= user.created_at.strftime("%B %d, %Y")%></td>
+            <td class="center">
+                <% if user.approved? %>
+                    <i class="fa-solid fa-thumbs-up"></i>
+                <% else %>
+                    <i class="fa-solid fa-thumbs-down"></i>
+                <%end%>
+                <% if user.admin? %>
+                    <i class="fa-solid fa-crown"></i>
+                <%end%>
+            </td>
+
+          <td>
+            <%= form_with url: approve_admin_user_path(user), method: :patch do |form| %>
+                <% if user.approved? %>
+                    <%= form.submit "disapprove", class: "btn btn-danger" %>
+                <% else %>
+                    <%= form.submit "approve", class: "btn btn-success" %>
+                <%end%>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

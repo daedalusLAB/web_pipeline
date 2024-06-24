@@ -1,17 +1,21 @@
 class VideosController < ApplicationController
-  before_action :set_video, only: %i[ show edit update destroy ]
+  before_action :set_video, only: %i[ show edit update destroy processed processing error ]
 
   # check if user is logged in
   before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: [:processed, :processing, :error]
+
+  # check ip and token before_action for processed action
+  before_action :check_ip_and_token, only: [:processed, :processing, :error]
 
   # GET /videos or /videos.json
   def index
     # get all videos ordered by created_at
     #@videos = Video.order(created_at: :desc)
     if current_user.admin?
-      @videos = Video.order(created_at: :desc)
+      @videos = Video.order(created_at: :desc).page(params[:page]).per(10)
     else
-      @videos = current_user.videos.order(created_at: :desc)
+      @videos = current_user.videos.order(created_at: :desc).page(params[:page]).per(10)
     end
   end
 
@@ -43,7 +47,12 @@ class VideosController < ApplicationController
         #format.html { redirect_to video_url(@video), notice: "Video was successfully created." }
         format.json { render :show, status: :created, location: @video }
         # redirect to the videos index page
-        format.html { redirect_to videos_url, notice: "Task was successfully created." }
+        flash[:notice] = "OTRO"
+        format.html { 
+          flash[:notice] = "Video was successfully created."
+          flash[:info] = "REMEMBER TO REALOAD THIS PAGE WHEN YOU RECEIVE THE EMAIL THAT YOUR TASK HAS BEEN PROCESSED!" 
+          redirect_to videos_url
+        }
 
       else
         @video.status = "Failed"
@@ -87,6 +96,28 @@ class VideosController < ApplicationController
     end
   end
 
+  def processed
+    @video.status = "Processed"
+    @video.save
+    # run job to exec pipeline_02_job.rb to scp zip file from hpc to local
+    Pipeline02Job.perform_async(@video.id)
+    redirect_to videos_url, notice: "Video was successfully processed. Copying files to local machine."
+  end
+
+  def processing
+    @video.status = "Processing"
+    @video.save
+    PipelineMailer.with(user: @video.user, status: @video.status).status_email.deliver_now
+    redirect_to videos_url, notice: "Video is processing."
+  end
+
+  def error
+    @video.status = "Error"
+    @video.save
+    PipelineMailer.with(user: @video.user, status: @video.status).status_email.deliver_now
+    redirect_to videos_url, notice: "Video was processed with error. Copying files to local machine."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_video
@@ -95,6 +126,28 @@ class VideosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def video_params
-      params.require(:video).permit(:name, :zip, :user_id)
+      params.require(:video).permit(:name, :zip, :user_id, :token)
     end
+
+    # check ip and token before_action for processed action
+    def check_ip_and_token
+      print "check_ip_and_token\n"
+      # check if the request is in the list of allowed IPs from .envfile
+      print "CURL FROM: #{request.remote_ip} \n"
+      print "ALLOWED_IPS: #{ENV['ALLOWED_IPS']} \n"
+      if ENV['ALLOWED_IPS'].split(",").include? request.remote_ip
+        # check if the token is correct
+        # print remote_ip
+        print "CURL FROM: #{request.remote_ip} \n"
+      end
+
+      if params[:token] == ENV['PROCESSED_TOKEN']
+          print "TOKEN: #{params[:token]} \n is correct"
+          return
+      end
+      print "****** TOKEN: #{params[:token]} is incorrect ********\n"
+      # if the token is incorrect or the IP is not allowed, redirect to the root path
+      redirect_to root_path
+    end
+
 end

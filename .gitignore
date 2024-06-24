@@ -42,3 +42,6 @@ public/uploads/
 .sidekiq.service
 
 *ssh.key*
+*-ssh.key*
+*.key*
+

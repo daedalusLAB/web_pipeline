@@ -2,9 +2,26 @@ require "sidekiq/web"
 Sidekiq::Web.app_url = "/"
 
 Rails.application.routes.draw do
+  resources :posts
+  namespace :admin do
+    resources :users, only: [:index] do
+      member do
+        patch :approve
+      end
+    end
+  end
   resources :videos
+  # add videos/:id/processed route
+  resources :videos do
+    member do
+      get 'processed'
+      get 'processing'
+      get 'error'
+    end
+  end
   devise_for :users
   get 'welcome/index'
+  get 'welcome/faq'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

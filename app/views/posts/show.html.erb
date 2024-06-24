@@ -1,0 +1,13 @@
+<h3><%= @post.title %></h3>
+<p>
+<%= markdown_to_html(@post.content) %>
+</p>
+
+
+<div>
+  <%= link_to "Edit this post", edit_post_path(@post), class: "btn btn-warning" %>
+  <%= link_to "Back to posts", posts_path , class: "btn btn-warning" %>
+<hr/>
+
+  <%= button_to "Destroy this post", @post, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+</div>

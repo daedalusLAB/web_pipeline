@@ -1,5 +1,9 @@
-<p>Welcome <%= @email %>!</p>
+<p>Welcome to MULTIDATA!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>Thank you for signing up <%= @email %>.</p>
+
+<p>To get you started, please click on the link below to confirm your email:</p>
 
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p>If you didn‘t submit your email address to join MULTIDATA, please contact our support team at <%= ENV['MAIL_HELLO'] %>.</p>

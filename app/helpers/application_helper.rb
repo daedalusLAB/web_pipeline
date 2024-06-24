@@ -8,4 +8,18 @@ module ApplicationHelper
             else "alert alert-info"
         end
     end
+
+    def markdown_to_html(markdown_text)
+        renderer = Redcarpet::Render::HTML.new(hard_wrap: true, filter_html: true)
+        markdown = Redcarpet::Markdown.new(renderer, extensions = {
+            autolink: true,
+            no_intra_emphasis: true,
+            fenced_code_blocks: true,
+            lax_html_blocks: true,
+            strikethrough: true,
+            superscript: true
+        })
+        markdown.render(markdown_text).html_safe
+    end
+
 end

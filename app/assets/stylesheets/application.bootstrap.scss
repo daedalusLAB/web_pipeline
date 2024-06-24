@@ -2,3 +2,101 @@
 @import 'bootstrap-icons/font/bootstrap-icons';
 
 
+  html, body {
+    height: 100%;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;  // Ensure the minimum height is full viewport height
+  }
+  
+  .container {
+    flex: 1;  // Allows the container to expand and fill available space
+  }
+  
+  .footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: auto;  // Automatically margins top, pushing footer to bottom
+    width: 100%;
+  }
+
+  .active{
+    color: #020202;
+    background-color: #ffc10750;
+    border-color: #ffc107;
+  }
+
+  .page-link.active, .active > .page-link {
+    z-index: 3;
+    color: #000000;
+    background-color: #ffc10720;
+    border-color: #ffc107;
+  }
+  
+  .dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #ffc107;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;  // Adjust if it does not perfectly align vertically
+    right: 0;
+    left: auto;  // Resets any other left positioning
+    z-index: 1000;  // Keeps it on top of other content
+    background-color: #ffc107;
+  }
+
+  .nav-item {
+    position: relative; /* This is for the dropdown parent */
+  }
+
+  .navbar-nav > .nav-item:last-child {
+    margin-right: 15px !important;
+  }
+
+
+  a{
+    color: #ffc107;
+  }
+
+.form-control:focus {
+  border-color: #ffc107;
+  box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+}
+
+
+.footer a{
+  color: white;
+  // no underline
+  text-decoration: none;
+}
+
+.accordion-button {
+  background-color: #ffc1075d;
+  color: #000;
+}
+.accordion-button:not(.collapsed) {
+  background-color: #ffc107;
+}
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.btn {
+  border-radius: 0.25rem !important; /* Standard Bootstrap radius */
+}
+
+.warning-light {
+  background-color: #fdde80;
+}

@@ -1,0 +1,62 @@
+<footer class="footer mt-5">
+    <div class="container">
+        <!-- Logos Row -->
+        <div class="row">
+            <div class="col-md-3  p-2">
+                <%= link_to "https://um.es", target: "_blank" do %>
+                    <%= image_tag "logoUMU.jpg", alt: "Logo Universidad Murcia", class: "img-fluid rounded", style: 'height:80%; width:auto;' %>
+                <% end %>            
+            </div>
+            <div class="col-md-3 p-2">
+                <%= link_to "https://fau.eu", target: "_blank" do %>
+                    <%= image_tag "logoFAU.jpg", alt: "Logo FAU University", class: "img-fluid rounded", style: 'height:80%;width:auto;' %>
+                <% end %>
+            </div>
+            <div class="col-md-3 p-2">
+                <%= link_to "https://www.ru.nl/", target: "_blank" do %>
+                    <%= image_tag "logoRadboud.jpg", alt: "Logo Radboud University", class: "img-fluid rounded", style: 'height:80%;width:auto;' %>
+                <% end %>
+            </div>
+            <div class="col-md-3 p-2">
+                <%= link_to "https://erasmus-plus.ec.europa.eu/", target: "_blank" do %>
+                    <%= image_tag "logoEU.jpg", alt: "Logo European Union", class: "img-fluid rounded", style: 'height:80%;width:auto;' %>
+                <% end %>
+            </div>
+        </div>
+        <!-- Information Row -->
+        <div class="row mt-4 text-start">
+            
+
+            <div class="col-md-3">
+                <ul class="list-unstyled">
+                    <li><a href="https://x.com/multidata_eu" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="https://www.instagram.com/multidata_eu/ " target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="https://www.youtube.com/@multidata_eu" target="_blank"><i class="fab fa-youtube"></i> Youtube</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="col-md-3">
+                
+            </div>
+            
+            <div class="col-md-3">
+                
+            </div>
+
+            <div class="col-md-3">
+                <p><a href="mailto:hello@multi-data.eu">hello@multi-data.eu</a></p>
+                <p><a href="#">Suscribe to our newsletter</a></p>
+            </div>
+        
+        </div>
+        <!-- Copyright -->
+        <div class="row">
+            <hr/>
+            <div class="col-12 mt-3">
+                <p>Funded by the European Union. Neither the European Union nor EACEA can be held responsible for views expressed.</p>
+                <p>Copyright &copy; <%= Time.now.year %> MultiData Pipeline</p>
+            </div>
+        </div>
+    </div>
+</footer>

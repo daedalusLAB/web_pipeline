@@ -1,0 +1,43 @@
+<%= form_with(model: post) do |form| %>
+  <% if post.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading"><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h4>
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control", placeholder: "Enter title" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :content, class: "form-label" %>
+    <%= form.text_area :content, class: "form-control", placeholder: "Enter content", rows: 5 %>
+  </div>
+
+  <div class="mb-3 form-check">
+    <%= form.label :published, class: "form-check-label" %>
+    <%= form.check_box :published, class: "form-check-input" %>
+  </div>
+
+  <div class="mb-3 form-check">
+    <%= form.label :private, class: "form-check-label" %>
+    <%= form.check_box :private, class: "form-check-input" %>
+  </div>
+
+
+  <div class="mb-3">
+    <%= form.label :order, class: "form-label" %>
+    <%= form.number_field :order, class: "form-control", placeholder: "Set display order" %>
+  </div>
+
+  <div>
+    <%= form.submit "Save Post", class: "btn btn-warning" %>
+  </div>
+<% end %>
+<hr/>

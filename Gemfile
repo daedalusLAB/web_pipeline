@@ -84,3 +84,5 @@ gem 'dotenv-rails'
 
 gem 'rolify'
 
+gem 'kaminari'
+gem 'redcarpet'

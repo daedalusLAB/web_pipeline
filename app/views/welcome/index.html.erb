@@ -1,5 +1,4 @@
-<h1>Welcome to the Daedalus Pipeline</h1>
-
+<h1>Welcome to the MULTIDATA Pipeline</h1>
 
 <% if user_signed_in? %>
   <%= render partial: "private" %>
@@ -7,7 +6,25 @@
   <%= render partial: "public" %>
 <% end %>
 
+    <div class="container mt-2">
+      <h2>Last News</h2>
 
+        <% if @posts.any? %>
+            <div class="row">
+                <% @posts.each do |post| %>
+                <div class="col-md-12 mb-12">
+                    <div class="card mt-2">
+                    <div class="card-body">
+                        <h4 class="card-title"><%= post.title %></h4>
+                        <h6 class="card-subtitle mb-2 text-muted"><%= post.created_at.strftime("%B %d, %Y") %></h6>
+                        <p class="card-text"><%= markdown_to_html(post.content) %></p>
+                    </div>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
 
 
 

@@ -8,7 +8,10 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
-  config.hosts << "labyrinth01.inf.um.es"
+  config.hosts << "multidata.multimodalcorpora.org"
+  config.hosts << "localhost"
+   
+#  config.force_ssl = true
 
 
   # Do not eager load code on boot.
@@ -60,7 +63,16 @@ Rails.application.configure do
   config.active_record.verbose_query_logs = true
 
   # Suppress logger output for asset requests.
-  config.assets.quiet = true
+  #config.assets.quiet = true
+
+  # Disable concatenation and preprocessing of assets.
+  config.assets.debug = true
+
+  # Supposed to fall back to assets pipeline if a precompiled asset is missed.
+  config.assets.compile = true
+
+  # Enable or disable caching of classes. Set to false when debugging or in production.
+  config.cache_classes = false
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
@@ -70,9 +82,21 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
-  config.action_mailer.default_url_options = { host:  ENV["URL_HOST"] , port: ENV["URL_PORT"] }
-  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.default_url_options = { host:  ENV["URL_HOST"] , port: ENV["URL_PORT"], protocol: ENV["URL_PROTOCOL"]}
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: ENV["EMAIL_FROM"]}
+  config.action_mailer.default_options = {from: ENV["MAIL_USER"]}
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              ENV["MAIL_SERVER"],
+    port:                 ENV["MAIL_PORT"],
+    domain:               ENV["MAIL_DOMAIN"],
+    user_name:            ENV["MAIL_USER"],
+    password:             ENV["MAIL_PASS"],
+    authentication:       ENV["MAIL_AUTHENTICATION"],
+    enable_starttls_auto: true,
+    open_timeout:         5,
+    read_timeout:         5 
+  }
 end

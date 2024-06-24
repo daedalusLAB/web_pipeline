@@ -1,6 +1,6 @@
-<nav class="navbar bg-warning navbar-expand-lg bg-body-tertiary" data-bs-theme="light">
+<nav class="navbar bg-warning navbar-expand-lg " data-bs-theme="light">
   <div class="container-fluid">
-    <a class="navbar-brand" href=<%= root_url %> >Daedalus MultiData Pipeline</a>
+    <a class="navbar-brand" href=<%= root_url %> > <%= image_tag("logo_small.png", height: "40px", alt: "logo", class: "logo") %> <b>MULTIDATA PIPELINE</b></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -28,17 +28,44 @@
         </li> %>
       </ul>
 
-      <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav ml-auto mb-2 mb-lg-0 ms-auto">
         <% if user_signed_in? %>
 
+          <% if current_user.admin? %>
+            <div class="nav-item">
+              <%= link_to "Users", admin_users_path, class: "nav-link active" %>
+            </div>
+            <div class="nav-item">
+              <%= link_to "News", posts_path, class: "nav-link active" %>
+            </div>
+          <% end %>
           <div class="nav-item">
             <%= link_to "Pipeline", videos_path, class: "nav-link active" %>
           </div>
           <div class="nav-item">
-            <%= link_to "Log out", sign_out_path, class: "nav-link active " %>
+            <%= link_to "FAQ", welcome_faq_path , class: "nav-link active" %>
           </div>
+
+          <div class="nav-item dropdown">
+            <%= link_to "#", {class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: {bs_toggle: "dropdown"}, aria_expanded: "false"} do %>
+              <%= current_user.email %> <!-- This assumes you have a current_user helper method -->
+            <% end %>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><%= link_to "Edit my user", edit_user_registration_path, class: "dropdown-item nav-link active" %></li> <!-- Adjust path as needed -->
+              <li><%= link_to "Logout", sign_out_path, method: :delete, class: "dropdown-item nav-link active" %> </li>
+            </ul>
+          </div>
+          <div class="nav-item">
+            <%= link_to "", "#" , class: "nav-link active" %>
+          </div>
+
         <% else %>
-          <%= link_to "Log in", new_user_session_path, class: "nav-link active" %>
+          <div class="nav-item">
+            <%= link_to "FAQ", welcome_faq_path , class: "nav-link active" %>
+          </div>
+          <div class="nav-item">
+            <%= link_to "Log in", new_user_session_path, class: "nav-link active bold" %>
+          </div>
         <% end %>
       </ul>
     </div>
