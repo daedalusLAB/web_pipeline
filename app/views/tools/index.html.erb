@@ -1,0 +1,38 @@
+<h1>Tools</h1>
+
+<%= link_to "New Tool", new_tool_path, class: "btn btn-warning" %>
+
+<div id="tools" class="table-responsive">
+  <table class="table table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Short Name</th>
+        <th>Dependencies</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tools.each do |tool| %>
+        <tr>
+          <td><%= tool.name %></td>
+          <td><%= tool.description %></td>
+          <td><%= tool.short_name %></td>
+          <td>
+            <% if tool.dependencies.any? %>
+              <%= tool.dependencies.map { |d| d.short_name }.join(", ") %>
+            <% else %>
+              
+            <% end %>
+          </td>
+          <td>
+            <%= link_to "Edit", edit_tool_path(tool), class: "btn btn-secondary btn-warning" %>
+            <%= link_to "Delete", tool, method: :delete, data: { confirm: "Are you sure? All dependant also tools will be removed!" }, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

@@ -1,0 +1,9 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @tool %>
+
+<div>
+  <%= link_to "Edit this tool", edit_tool_path(@tool), class: "btn btn-warning" %>
+  <%= link_to "Back to tools", tools_path , class: "btn btn-warning" %> 
+  <%= button_to "Destroy this tool", @tool, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger mt-2" %>
+</div>

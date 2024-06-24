@@ -2,6 +2,7 @@ require "sidekiq/web"
 Sidekiq::Web.app_url = "/"
 
 Rails.application.routes.draw do
+  resources :tools
   resources :posts
   namespace :admin do
     resources :users, only: [:index] do

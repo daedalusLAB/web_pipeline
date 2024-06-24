@@ -32,6 +32,9 @@
         <% if user_signed_in? %>
 
           <% if current_user.admin? %>
+          <div class="nav-item">
+              <%= link_to "Tools", tools_path, class: "nav-link active" %>
+            </div>
             <div class="nav-item">
               <%= link_to "Users", admin_users_path, class: "nav-link active" %>
             </div>
