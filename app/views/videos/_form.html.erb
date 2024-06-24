@@ -25,7 +25,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @tools.each do |tool| %>
+        <% Tool.all.order(:name).each do |tool| %>
           <tr>
             <td>
               <%= form.check_box :tool_ids, { multiple: true, id: "tool_ids_#{tool.id}" }, tool.id, nil %>

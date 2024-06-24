@@ -31,6 +31,10 @@ class Video < ApplicationRecord
         if zip.file.original_filename.split(".").last != "zip"
             errors.add(:zip, "File must be a .zip file.")
         end
+        # check that file name is not same than name
+        if zip.file.original_filename.split(".").first == name
+            errors.add(:zip, "File name cannot be the same as the name.")
+        end
     end
 
 end
