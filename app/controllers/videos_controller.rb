@@ -26,6 +26,7 @@ class VideosController < ApplicationController
   # GET /videos/new
   def new
     @video = Video.new
+    @tools = Tool.all.order(:name)
   end
 
   # # GET /videos/1/edit

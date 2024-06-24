@@ -1,10 +1,7 @@
-
-
 <%= form_with(model: video, class: "form") do |form| %>
   <% if video.errors.any? %>
     <div class="alert alert-danger">
       <h2><%= pluralize(video.errors.count, "error") %> prohibited this video from being saved:</h2>
-
       <ul>
         <% video.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -13,13 +10,35 @@
     </div>
   <% end %>
 
-
   <div class="form-group mb-3">
     <%= form.label "Name of the task", class: "form-label" %>
     <%= form.text_field :name, class: "form-control", placeholder: "Enter a recognizable name for the task. It will be the name of the resultant .zip file", autofocus: true %>
   </div>
 
-  <div class="form-group mb-3">
+  <h3>Select the tools to process the video</h3>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead class="thead-light">
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tools.each do |tool| %>
+          <tr>
+            <td>
+              <%= form.check_box :tool_ids, { multiple: true, id: "tool_ids_#{tool.id}" }, tool.id, nil %>
+            <td><%= tool.name %></td>
+            <td><%= tool.description %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="form-group mb-3 mt-2">
     <%= form.label ".zip file", class: "form-label" %>
     <%= form.file_field :zip, class: "form-control-file", accept: ".zip" %>
   </div>

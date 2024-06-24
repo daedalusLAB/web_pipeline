@@ -3,7 +3,7 @@
 <%= link_to "New Tool", new_tool_path, class: "btn btn-warning" %>
 
 <div id="tools" class="table-responsive">
-  <table class="table table-hover">
+  <table class="table table-striped">
     <thead class="thead-light">
       <tr>
         <th>Name</th>
@@ -27,8 +27,10 @@
             <% end %>
           </td>
           <td>
-            <%= link_to "Edit", edit_tool_path(tool), class: "btn btn-secondary btn-warning" %>
-            <%= link_to "Delete", tool, method: :delete, data: { confirm: "Are you sure? All dependant also tools will be removed!" }, class: "btn btn-danger" %>
+            <div class="btn-group ">
+              <%= link_to "Edit", edit_tool_path(tool), class: "btn  btn-warning m-2 " %>
+              <%= link_to "Delete", tool, method: :delete, data: { confirm: "Are you sure? All dependant also tools will be removed!" }, class: "btn btn-danger m-2" %>
+            </div>
           </td>
         </tr>
       <% end %>

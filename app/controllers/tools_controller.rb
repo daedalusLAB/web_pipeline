@@ -7,7 +7,9 @@ class ToolsController < ApplicationController
 
   # GET /tools or /tools.json
   def index
-    @tools = Tool.all
+    # tools order by name
+    @tools = Tool.all.order(:name)
+
   end
 
   # GET /tools/1 or /tools/1.json
