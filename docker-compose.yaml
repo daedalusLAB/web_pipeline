@@ -34,7 +34,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: secret
-    restart: always
+    restart: on-failure:3
     volumes:
       - postgres:/var/lib/postgresql/data
 
@@ -50,6 +50,7 @@ services:
     command: redis-server
     volumes:
       - redis:/data
+    restart: on-failure:3
 
 
 volumes:
