@@ -14,7 +14,7 @@
     <%= form.text_field :name, class: "form-control", placeholder: "Enter a recognizable name for the task. It will be the name of the resultant .zip file", autofocus: true %>
   </div>
 
-  <h3>Select the tools to process the video</h3>
+  <h3>List of tools to process the video</h3>
   <div class="table-responsive">
     <table class="table table-striped">
       <thead class="thead-light">
@@ -28,7 +28,7 @@
         <% Tool.all.order(:name).each do |tool| %>
           <tr>
             <td>
-              <%= form.check_box :tool_ids, { multiple: true, id: "tool_ids_#{tool.id}" }, tool.id, nil %>
+              <%#= form.check_box :tool_ids, { multiple: true, id: "tool_ids_#{tool.id}" }, tool.id, nil %>
             <td><%= tool.name %></td>
             <td><%= tool.description %></td>
           </tr>
