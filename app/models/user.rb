@@ -5,6 +5,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :lockable,
          :recoverable, :rememberable, :validatable, :confirmable
 
+  validates :email, presence: true
+  validates :full_name, presence: true
+  validates :company, presence: true
+  
   has_many :videos, dependent: :destroy
 
   after_create :assign_default_role, :send_admin_mail

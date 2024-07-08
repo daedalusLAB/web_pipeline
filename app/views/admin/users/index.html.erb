@@ -4,6 +4,9 @@
   <table class="table">
     <thead>
       <tr>
+        <th>Name</th>
+        <th>Company</th>
+        <th>Invited by</th>
         <th>Email</th>
         <th>Access date</th>
         <th>Status</th>
@@ -13,18 +16,21 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
-            <td><%= user.email %></td>
-            <td><%= user.created_at.strftime("%B %d, %Y")%></td>
-            <td class="center">
-                <% if user.approved? %>
-                    <i class="fa-solid fa-thumbs-up"></i>
-                <% else %>
-                    <i class="fa-solid fa-thumbs-down"></i>
-                <%end%>
-                <% if user.admin? %>
-                    <i class="fa-solid fa-crown"></i>
-                <%end%>
-            </td>
+          <td><%= user.full_name %></td>
+          <td><%= user.company %></td>
+          <td><%= user.invited_by %></td>
+          <td><%= user.email %></td>
+          <td><%= user.created_at.strftime("%B %d, %Y")%></td>
+          <td class="center">
+              <% if user.approved? %>
+                  <i class="fa-solid fa-thumbs-up"></i>
+              <% else %>
+                  <i class="fa-solid fa-thumbs-down"></i>
+              <%end%>
+              <% if user.admin? %>
+                  <i class="fa-solid fa-crown"></i>
+              <%end%>
+          </td>
 
           <td>
             <%= form_with url: approve_admin_user_path(user), method: :patch do |form| %>
@@ -33,6 +39,7 @@
                 <% else %>
                     <%= form.submit "approve", class: "btn btn-success" %>
                 <%end%>
+                <%= link_to "Edit", edit_admin_user_path(user), class: "btn btn-warning" %>
             <% end %>
           </td>
         </tr>

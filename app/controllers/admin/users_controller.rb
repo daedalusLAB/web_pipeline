@@ -24,6 +24,19 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    user = User.find(params[:id])
+    if user.update(user_params)
+      redirect_to admin_users_path, notice: 'User updated successfully.'
+    else
+      redirect_to admin_users_path, alert: 'User could not be updated.'
+    end
+  end
+
   private
 
   def check_admin
@@ -33,7 +46,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:commit, :approved)
+    params.require(:user).permit(:commit, :approved, :full_name, :company, :invited_by)
   end
 
 end

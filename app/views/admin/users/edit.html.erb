@@ -1,0 +1,35 @@
+<h1 class="mb-4">Edit User: <%= @user.full_name %></h1>
+
+<%= form_for([:admin, @user], html: { class: 'needs-validation', novalidate: true }) do |f| %>
+    <% if @user.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">The following <%= pluralize(@user.errors.count, "error") %> occurred:</h4>
+        <ul>
+            <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+        </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group mb-3">
+        <%= f.label :full_name, class: 'form-label' %>
+        <%= f.text_field :full_name, class: 'form-control', required: true %>
+    </div>
+
+    <div class="form-group mb-3">
+        <%= f.label :company, class: 'form-label' %>
+        <%= f.text_field :company, class: 'form-control', required: true %>
+    </div>
+
+    <div class="form-group mb-3">
+        <%= f.label :invited_by, class: 'form-label' %>
+        <%= f.text_field :invited_by, class: 'form-control' %>
+    </div>
+
+    <div class="form-group mb-3">
+        <%= f.submit 'Update User', class: 'btn btn-warning' %>
+        <%= link_to 'Back', admin_users_path, class: 'btn btn-warning' %>
+    </div>
+    
+<% end %>

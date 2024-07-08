@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :tools
   resources :posts
   namespace :admin do
-    resources :users, only: [:index] do
+    resources :users, only: [:index, :edit, :update] do
       member do
         patch :approve
       end
