@@ -290,6 +290,7 @@ DEPENDENCIES
   redcarpet
   redis
   rolify
+  rubyzip
   selenium-webdriver
   sidekiq
   sprockets-rails

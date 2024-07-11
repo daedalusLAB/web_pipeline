@@ -86,3 +86,4 @@ gem 'rolify'
 
 gem 'kaminari'
 gem 'redcarpet'
+gem 'rubyzip'
