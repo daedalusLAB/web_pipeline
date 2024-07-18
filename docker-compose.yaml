@@ -14,7 +14,7 @@ x-web:
     DB_NAME: app_dev
     SECRET_KEY_BASE: STUB
     REDIS_URL: redis://redis:6379/1
-  restart: on-failure:3
+  restart: unless-stopped
   stdin_open: true
   tty: true
   volumes:
@@ -34,7 +34,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: secret
-    restart: on-failure:3
+    restart: unless-stopped
     volumes:
       - postgres:/var/lib/postgresql/data
 
@@ -44,13 +44,14 @@ services:
     depends_on:
       - redis
       - web
+    restart: unless-stopped
 
   redis:
     image: 'redis:7.0-alpine'
     command: redis-server
     volumes:
       - redis:/data
-    restart: on-failure:3
+    restart: unless-stopped
 
 
 volumes:
