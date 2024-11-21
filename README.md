@@ -1,4 +1,4 @@
-# Web Pipeline
+# MULTIDATA Pipeline
 ## Overview
 MULTIDATA is an online platform for the study of multimodal communication. We offer an AI-based pipeline to analyze speech and gesture data from videos, as well as other resources for developing audiovisual collections and exploiting them for education, research, and professional applications. The MULTIDATA team is constantly integrating the most relevant open-source tools, or developing tools of our own.
 
