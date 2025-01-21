@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_08_065441) do
     t.integer "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "private"
+    t.boolean "private", default: false, null: false
   end
 
   create_table "roles", force: :cascade do |t|

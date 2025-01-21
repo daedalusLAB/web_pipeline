@@ -28,7 +28,7 @@
         <% Tool.all.order(:name).each do |tool| %>
           <tr>
             <td>
-              <%#= form.check_box :tool_ids, { multiple: true, id: "tool_ids_#{tool.id}" }, tool.id, nil %>
+              <%= form.check_box :tool_ids, { multiple: true, id: "tool_ids_#{tool.id}", checked: video.tool_ids&.include?(tool.id.to_s) }, tool.id, nil %>
             <td><%= tool.name %></td>
             <td><%= tool.description %></td>
           </tr>
@@ -45,5 +45,4 @@
   <div class="form-group">
     <%= form.submit "Upload zip", class: "btn btn-warning" %>
   </div>
-
 <% end %>

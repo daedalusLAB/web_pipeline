@@ -40,20 +40,18 @@ class VideosController < ApplicationController
 
     respond_to do |format|
       if @video.save
-
-        # send the video to the pipeline
-        Pipeline01Job.perform_async(@video.id)
+        # Get the sorted list of tool dependencies
+        tool_dependencies = Tool.get_unique_sorted_short_names(@video.tool_ids)
+        
+        # send the video to the pipeline with dependencies
+        Pipeline01Job.perform_async(@video.id, tool_dependencies)
         PipelineMailer.with(user: @video.user, status: @video.status).status_email.deliver_now
-        #format.html { redirect_to video_url(@video), notice: "Video was successfully created." }
         format.json { render :show, status: :created, location: @video }
-        # redirect to the videos index page
-        flash[:notice] = "OTRO"
         format.html { 
           flash[:notice] = "Video was successfully created."
           flash[:info] = "REMEMBER TO REALOAD THIS PAGE WHEN YOU RECEIVE THE EMAIL THAT YOUR TASK HAS BEEN PROCESSED!" 
           redirect_to videos_url
         }
-
       else
         @video.status = "Failed"
         format.html { render :new, status: :unprocessable_entity }
@@ -126,7 +124,7 @@ class VideosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def video_params
-      params.require(:video).permit(:name, :zip, :user_id, :token)
+      params.require(:video).permit(:name, :zip, :user_id, :token, tool_ids: [])
     end
 
     # check ip and token before_action for processed action
