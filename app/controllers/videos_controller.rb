@@ -96,6 +96,7 @@ class VideosController < ApplicationController
 
   def processed
     @video.status = "Processed"
+    @video.skip_tool_validation = true
     @video.save
     # run job to exec pipeline_02_job.rb to scp zip file from hpc to local
     Pipeline02Job.perform_async(@video.id)
@@ -104,6 +105,7 @@ class VideosController < ApplicationController
 
   def processing
     @video.status = "Processing"
+    @video.skip_tool_validation = true
     @video.save
     PipelineMailer.with(user: @video.user, status: @video.status).status_email.deliver_now
     redirect_to videos_url, notice: "Video is processing."
@@ -111,6 +113,7 @@ class VideosController < ApplicationController
 
   def error
     @video.status = "Error"
+    @video.skip_tool_validation = true
     @video.save
     PipelineMailer.with(user: @video.user, status: @video.status).status_email.deliver_now
     redirect_to videos_url, notice: "Video was processed with error. Copying files to local machine."

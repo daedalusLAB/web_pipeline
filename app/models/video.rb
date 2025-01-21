@@ -1,13 +1,13 @@
 require 'zip'
 class Video < ApplicationRecord
-    attr_accessor :tool_ids
+    attr_accessor :tool_ids, :skip_tool_validation
     mount_uploader :zip, ZipUploader
     validates :name, presence: true
     validates :zip, presence: true
     belongs_to :user  
 
     # validate that at least one tool is selected
-    validate :at_least_one_tool_selected
+    validate :at_least_one_tool_selected, unless: :skip_tool_validation
 
     # validate that name only contains letters, numbers, and spaces. If error, display message "Name can only contain letters, numbers, - and _"
     validates_format_of :name, :with => /\A[A-Za-z0-9\-_]+\z/, :message => "can only contain letters, numbers, hypen and underscore"
