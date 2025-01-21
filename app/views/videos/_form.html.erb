@@ -37,6 +37,18 @@
     </table>
   </div>
 
+  <script>
+    document.querySelector('.form').addEventListener('submit', function(event) {
+      const checkboxes = document.querySelectorAll('input[type="checkbox"][name="video[tool_ids][]"]');
+      const isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+      
+      if (!isAnyChecked) {
+        event.preventDefault();
+        alert('Please select at least one tool before submitting.');
+      }
+    });
+  </script>
+
   <div class="form-group mb-3 mt-2">
     <%= form.label ".zip file", class: "form-label" %>
     <%= form.file_field :zip, class: "form-control-file", accept: ".zip" %>
