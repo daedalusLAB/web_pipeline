@@ -130,4 +130,3 @@ This project is funded by the European Union through ERASMUS PLUS KA220-HED. See
 
 - Email: hello@multi-data.eu
 - Website: [https://www.multi-data.eu](https://www.multi-data.eu)
-- Address: Avda. Teniente Flomesta, 5. 30003. Murcia
