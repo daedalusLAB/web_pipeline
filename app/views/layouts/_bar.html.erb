@@ -31,6 +31,9 @@
       <ul class="navbar-nav ml-auto mb-2 mb-lg-0 ms-auto">
         <% if user_signed_in? %>
 
+          <div class="nav-item">
+            <%= link_to "Project Page", "https://www.multi-data.eu" , class: "nav-link active", target: "_blank" %>
+          </div>
           <% if current_user.admin? %>
           <div class="nav-item">
               <%= link_to "Tools", tools_path, class: "nav-link active" %>
@@ -63,6 +66,9 @@
           </div>
 
         <% else %>
+          <div class="nav-item">
+            <%= link_to "Project Page", "https://www.multi-data.eu" , class: "nav-link active", target: "_blank" %>
+          </div>
           <div class="nav-item">
             <%= link_to "FAQ", "https://www.multi-data.eu/?page_id=91" , class: "nav-link active", target: "_blank" %>
           </div>

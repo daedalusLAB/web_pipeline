@@ -1,7 +1,14 @@
-<h1>Welcome to the pipeline processing page!</h1>
-<p>Here, you can easily upload your videos in a .zip file and have it processed through our pipeline for further analysis or transformation.</p>
-<p>You can leave the page and come back when you receive an email confirming that your task status is processed.</p>
-<p><b>Note:</b> if you do not leave the page, you will need to refresh the page to see the status changes and to download the data.</p>
+<h1>Video Pipeline Dashboard</h1>
+
+<div class="toast show w-100 mb-3" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-header bg-warning bg-opacity-25">
+    <strong class="me-auto">Important Information</strong>
+  </div>
+  <div class="toast-body">
+    <p class="mb-2">Upload your videos in a .zip file (max 500 Mb, up to 100 .mp4 files) for pipeline processing. You'll receive an email when processing is complete.</p>
+    <p class="mb-2"><b>Note:</b> Refresh the page to see status changes. <b>Uploaded content is your sole responsibility.</b></p>
+  </div>
+</div>
 
 <%= link_to "Upload zip", new_video_path, class: "btn btn-warning" %>
 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#helpModal">

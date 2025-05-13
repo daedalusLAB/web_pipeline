@@ -41,6 +41,24 @@
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
           </div>
 
+
+          <div class="form-group mt-3">
+            <div class="form-check">
+              <%= check_box_tag :terms_conditions, '1', false, class: 'form-check-input', required: true %>
+              <%= label_tag :terms_conditions, class: 'form-check-label' do %>
+                I agree to the <%= link_to 'Terms and Conditions', "https://www.multi-data.eu/privacy-policy-2", target: '_blank', class: 'text-warning' %> and <%= link_to 'Privacy Policy', "https://www.multi-data.eu/privacy-policy-2", target: '_blank', class: 'text-warning' %>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-check">
+              <%= check_box_tag :use_policy, '1', false, class: 'form-check-input', required: true %>
+              <%= label_tag :use_policy, 'I understand that I am solely responsible for the uploaded content', class: 'form-check-label' %>
+            </div>
+          </div>
+
+
           <div class="form-group mt-2">
             <%= f.submit "Sign up", class: 'btn btn-warning mt-2 btn-block w-100' %>
           </div>

@@ -1,18 +1,79 @@
 <!DOCTYPE html>
-<html>
+<!-- Developed by Raul Sanchez <raul@um.es> -->
+<html lang="<%= I18n.locale %>">
   <head>
-    <title>MULTIDATA PIPELINE</title>
+    <!-- Primary Meta Tags -->
+    <title><%= content_for?(:title) ? yield(:title) : "MULTIDATA - Multimodal Communication Analysis Platform" %></title>
+    <meta name="title" content="<%= content_for?(:meta_title) ? yield(:meta_title) : 'MULTIDATA - Multimodal Communication Analysis Platform' %>">
+    <meta name="description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : 'MULTIDATA is an online platform for multimodal communication analysis, offering AI-based pipeline for speech and gesture data analysis from videos. Access tutorials, guidelines and resources for education, research and professional applications.' %>">
+    <meta name="keywords" content="<%= content_for?(:meta_keywords) ? yield(:meta_keywords) : 'multimodal communication, speech analysis, gesture analysis, AI pipeline, video analysis, research tools, educational resources' %>">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<%= request.original_url %>">
+    <meta property="og:title" content="<%= content_for?(:og_title) ? yield(:og_title) : 'MULTIDATA - Multimodal Communication Analysis Platform' %>">
+    <meta property="og:description" content="<%= content_for?(:og_description) ? yield(:og_description) : 'MULTIDATA is an online platform for multimodal communication analysis, offering AI-based pipeline for speech and gesture data analysis from videos. Access tutorials, guidelines and resources for education, research and professional applications.' %>">
+    <meta property="og:image" content="<%= content_for?(:og_image) ? yield(:og_image) : asset_url('multidata_main_logo.png') %>">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="<%= request.original_url %>">
+    <meta property="twitter:title" content="<%= content_for?(:twitter_title) ? yield(:twitter_title) : 'MULTIDATA - Multimodal Communication Analysis Platform' %>">
+    <meta property="twitter:description" content="<%= content_for?(:twitter_description) ? yield(:twitter_description) : 'MULTIDATA is an online platform for multimodal communication analysis, offering AI-based pipeline for speech and gesture data analysis from videos. Access tutorials, guidelines and resources for education, research and professional applications.' %>">
+    <meta property="twitter:image" content="<%= content_for?(:twitter_image) ? yield(:twitter_image) : asset_url('multidata_main_logo.png') %>">
+
+    <!-- Technical Meta Tags -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="robots" content="<%= content_for?(:robots) ? yield(:robots) : 'index, follow' %>">
+    <link rel="canonical" href="<%= content_for?(:canonical_url) ? yield(:canonical_url) : request.original_url %>">
+    
+    <!-- Alternate Language Links -->
+    <% if content_for?(:alternate_languages) %>
+      <%= yield(:alternate_languages) %>
+    <% end %>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="<%= asset_path('multidata_favicon.jpg') %>">
+    <link rel="apple-touch-icon" href="<%= asset_path('multidata_favicon.jpg') %>">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "MULTIDATA",
+        "url": "<%= root_url %>",
+        "logo": "<%= asset_url('multidata_favicon.jpg') %>",
+        "description": "MULTIDATA is an online platform for the study of multimodal communication. We offer an AI-based pipeline to analyze speech and gesture data from videos, as well as other resources for developing audiovisual collections.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "hello@multi-data.eu",
+          "contactType": "customer service"
+        },
+        "funder": {
+          "@type": "Organization",
+          "name": "European Union"
+        },
+        "offers": {
+          "@type": "Offer",
+          "description": "Research platform for multimodal data analysis",
+          "availability": "Available for users with research and teachingprofile"
+        }
+      }
+    </script>
   </head>
 
   <body>
-
     <%= render "layouts/bar" %>
     <div class="container">
       <div class="mt-2">
