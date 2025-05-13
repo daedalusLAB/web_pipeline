@@ -1,32 +1,133 @@
 # MULTIDATA Pipeline
+
 ## Overview
-MULTIDATA is an online platform for the study of multimodal communication. We offer an AI-based pipeline to analyze speech and gesture data from videos, as well as other resources for developing audiovisual collections and exploiting them for education, research, and professional applications. The MULTIDATA team is constantly integrating the most relevant open-source tools, or developing tools of our own.
+MULTIDATA is an online platform for the study of multimodal communication, funded by an ERASMUS PLUS KA220-HED grant to the University of Murcia, with Radboud University Nijmegen and FAU Erlangen-Nürnberg as partners. We offer an AI-based pipeline to analyze speech and gesture data from videos, as well as other resources for developing audiovisual collections and exploiting them for education, research, and professional applications.
 
-Our resources come with explanatory tutorials and guidelines, as well as with didactic materials for the use of multimodal data across disciplines. We also host a forum for exchanging ideas, resources, and feedback on all things multimodal. In this page, you can register for our webinars and stay tuned for our presentations at conferences and other events. Check out the news for our online and onsite activities!
+Our platform provides comprehensive tools for analyzing multimodal communication through:
+- Automatic speech analysis
+- Video transcription with time-alignment
+- Human pose estimation and gesture analysis
+- Integration with ELAN for detailed annotation
+- Advanced data processing and organization
 
-![Home](https://private-user-images.githubusercontent.com/1314992/388492369-cc648b8e-cad5-4c75-b1e6-d4a2a0dae8dc.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzY3Njk3NDYsIm5iZiI6MTczNjc2OTQ0NiwicGF0aCI6Ii8xMzE0OTkyLzM4ODQ5MjM2OS1jYzY0OGI4ZS1jYWQ1LTRjNzUtYjFlNi1kNGEyYTBkYWU4ZGMucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI1MDExMyUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTAxMTNUMTE1NzI2WiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9Mjk4N2M5YTNiZDVmZDY4MWJlNDZhYmMwOTRiZjAxNDk4ZTdiODhhMWQ2MmYwNjQ4ODJiZDU3YTk5ZDJmMzg5MCZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QifQ.9IjHSdAQkbbKt4HBYP-MsoZYJMqCdy1ZJaktFWEbTkI)
+![Home](https://www.multi-data.eu/wp-content/uploads/2025/05/readme5.png)
 
-![Pipeline](https://private-user-images.githubusercontent.com/1314992/388491943-e889f57c-e23d-4544-843e-c23d247793e3.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzY3Njk3NDYsIm5iZiI6MTczNjc2OTQ0NiwicGF0aCI6Ii8xMzE0OTkyLzM4ODQ5MTk0My1lODg5ZjU3Yy1lMjNkLTQ1NDQtODQzZS1jMjNkMjQ3NzkzZTMucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI1MDExMyUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTAxMTNUMTE1NzI2WiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9MjQ2MzFkYjNlMjUxMzYzN2IwMmQyODE2NGU5YmU1ZjBiZDk1OGNjNWVhODkzYjgyYzFkYjNhZWQwOTY3ZjllOCZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QifQ.iylFN-IaCXstp9YmXYXqG7tMibNxgsnfz00hUgqRJig)
+![Pipeline](https://www.multi-data.eu/wp-content/uploads/2025/05/readme2.jpg)
 
-![Tools](https://private-user-images.githubusercontent.com/1314992/388492163-e78f4210-336b-4cca-9706-5617c9a9085a.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzY3Njk3NDYsIm5iZiI6MTczNjc2OTQ0NiwicGF0aCI6Ii8xMzE0OTkyLzM4ODQ5MjE2My1lNzhmNDIxMC0zMzZiLTRjY2EtOTcwNi01NjE3YzlhOTA4NWEucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI1MDExMyUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTAxMTNUMTE1NzI2WiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9MDNlMzFjMWNlYTM5YWJjMDU2YmM2ZGY1YTZkZDQ5M2FmZTJhOGM3YjcwYWZmYTdiZjJjZGI2ZmIwNDI1NmM2ZiZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QifQ.EpJvcJOoFbNmrywvGMTJbUSbyUQ1YJPaw8M9NPMABRk)
+![Tools](https://www.multi-data.eu/wp-content/uploads/2025/05/readme4.png)
 
-![Webpage](https://private-user-images.githubusercontent.com/1314992/388492521-ffd36ae4-6c84-4819-a341-8a703fad3ccf.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzY3Njk3NDYsIm5iZiI6MTczNjc2OTQ0NiwicGF0aCI6Ii8xMzE0OTkyLzM4ODQ5MjUyMS1mZmQzNmFlNC02Yzg0LTQ4MTktYTM0MS04YTcwM2ZhZDNjY2YucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI1MDExMyUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTAxMTNUMTE1NzI2WiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9MDg4YTBmZjQ5YWNlMjI0ZThhZTczNzUyYzFjNTYwMThhMzRhOTE0MTQzMjc0YTk1MzljODYxNzViMjE3NTQyNCZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QifQ.fwvXaBbDVzaD0gZ6N1LXdN-uYJcYtJPs-TmsJYpQQ_k)
+![Webpage](https://www.multi-data.eu/wp-content/uploads/2025/05/readme6.png)
 
 ## Features
-- **File Uploads**: Users can upload `.zip` files containing videos for processing.
-- **Automated Processing Pipeline**: Decompression, video processing with various tools, and recompression.
-- **Job Queue**: Processes files in a queue with email status updates.
-- **Support for Multiple Tools**: Integration with [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) and [Whisper](https://github.com/openai/whisper) for video analysis. Tools must be installed on the server.
-- **Performance**: Tested with 10-15 second Newscape videos, with processing time around 2 minutes per video in local server.
+
+### Core Functionality
+- **File Uploads**: Support for `.zip` files containing videos for processing
+- **Automated Processing Pipeline**: Streamlined workflow from decompression through analysis to results
+- **Job Queue**: Efficient processing with email status notifications
+- **Multi-Tool Integration**: Seamless integration with industry-standard tools
+
+### Analysis Tools
+- **Speech Analysis**: Generates frame-by-frame data for pitch, intensity, harmonicity, and formants
+- **ELAN Integration**: Creates ELAN files with aligned video transcriptions
+- **Transcription**: Provides time-stamped transcriptions and subtitled videos
+- **DFMaker**: Processes and organizes keypoints data from OpenPose
+- **Key Bodypoint Detection**: Analyzes human body, hand, and facial keypoints
+- **People Detection**: Identifies people in videos (head and shoulders detection)
 
 ## Technologies and Libraries
-- **Ruby on Rails**: MVC web application framework.
-- **PostgreSQL**: Database management.
-- **Devise**: Authentication system.
-- **Sidekiq with Redis**: Background job processing.
-- **CarrierWave**: File uploads.
-- **Bootstrap**: Frontend presentation.
 
+### Backend
+- **Ruby on Rails**: Web application framework
+- **PostgreSQL**: Database management
+- **Redis**: Cache and job queue management
+- **Sidekiq**: Background job processing
+- **Docker**: Containerization and deployment
+
+### Frontend
+- **Bootstrap**: Responsive UI framework
+- **JavaScript/Node.js**: Frontend interactivity
+- **Yarn**: Package management
+
+## Installation
+
+### Prerequisites
+- Ruby (version specified in `.ruby-version`)
+- Node.js and Yarn
+- PostgreSQL
+- Redis
+- Docker and Docker Compose (optional)
+
+### Local Setup
+1. Clone the repository:
+   ```bash
+   git clone [repository-url]
+   cd web_pipeline
+   ```
+
+2. Install dependencies:
+   ```bash
+   bundle install
+   yarn install
+   ```
+
+3. Configure environment variables:
+   - Copy `.env.example` to `.env`
+   - Update with your configuration
+
+4. Setup database:
+   ```bash
+   rails db:create db:migrate
+   ```
+
+5. Start the services:
+   ```bash
+   ./start_app.sh
+   ```
+
+### Docker Setup
+1. Build the containers:
+   ```bash
+   docker-compose build
+   ```
+
+2. Start the services:
+   ```bash
+   docker-compose up
+   ```
+
+## Usage
+
+1. Register/Login to the platform
+2. Upload video files (in .zip format)
+3. Select desired analysis tools
+4. Monitor job progress via email notifications
+5. Download and review results
+
+## Data Privacy
+
+- Videos are processed and then immediately deleted
+- No video data is backed up or stored permanently
+- Only essential user information is retained
+- Secure handling of all uploaded content
 
 ## Contributing
-Contact MULTIDATA Team <hello@multi-data.eu>
+
+We welcome contributions from the research community. Please contact the MULTIDATA Team at <hello@multi-data.eu> for collaboration opportunities.
+
+## Project Partners
+
+- University of Murcia (Lead)
+- Radboud University Nijmegen
+- FAU Erlangen-Nürnberg
+- Red Hen Lab™ (Associated Partner)
+- Max Planck Institute for Psycholinguistics (Associated Partner)
+
+## License
+
+This project is funded by the European Union through ERASMUS PLUS KA220-HED. See LICENSE file for details.
+
+## Contact
+
+- Email: hello@multi-data.eu
+- Website: [https://www.multi-data.eu](https://www.multi-data.eu)
+- Address: Avda. Teniente Flomesta, 5. 30003. Murcia
