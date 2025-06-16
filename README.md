@@ -27,12 +27,14 @@ Our platform provides comprehensive tools for analyzing multimodal communication
 - **Multi-Tool Integration**: Seamless integration with industry-standard tools
 
 ### Analysis Tools
-- **Speech Analysis**: Generates frame-by-frame data for pitch, intensity, harmonicity, and formants
-- **ELAN Integration**: Creates ELAN files with aligned video transcriptions
-- **Transcription**: Provides time-stamped transcriptions and subtitled videos
-- **DFMaker**: Processes and organizes keypoints data from OpenPose
-- **Key Bodypoint Detection**: Analyzes human body, hand, and facial keypoints
-- **People Detection**: Identifies people in videos (head and shoulders detection)
+- **Transcription**: Provides time-stamped transcriptions and subtitled videos using [Whisper](https://github.com/openai/whisper).
+- **Speech Analysis**: Generates frame-by-frame data for pitch, intensity, harmonicity, and formants using [daedalusLAB/speech_analysis](https://github.com/daedalusLAB/speech_analysis).
+- **ELAN Integration**: Creates ELAN files with aligned video transcriptions using [daedalusLAB/create_elan_from_video](https://github.com/daedalusLAB/create_elan_from_video).
+- **People Detection**: Identifies people in videos using [People detection tool](https://github.com/daedalusLAB/mario_plumber/tree/main/is_there_a_person_in_the_video) for head and shoulders detection.
+- **Openpose Key Bodypoint Detection**: Analyzes human body, hand, and facial keypoints using [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose).
+- **DFMaker**: Processes and organizes keypoints data from OpenPose using [daedalusLAB/dfMaker](https://github.com/daedalusLAB/dfMaker).
+- **MediaPipe Key Bodypoint Detection**: Analyzes human body, hand, and facial keypoints using [MediaPipe](https://github.com/google/mediapipe).
+- **Kinetic HeatMap**: Generates heatmaps from hands keypoints data using [MPI Kinetic HeatMap](https://github.com/Mundgelenk/MPI_MDP).
 
 ## Technologies and Libraries
 
