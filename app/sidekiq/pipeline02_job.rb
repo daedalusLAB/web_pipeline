@@ -14,7 +14,20 @@ class Pipeline02Job
     destination_path = File.dirname(video.zip.file.path)
   
     # get the output of the script and print it to the console. If there is an error, it will be printed to the console
+    puts "**********************************************************************"
+    puts "video.zip.file.path: #{video.zip.file.path}"
+    puts "video.name: #{video.name}"
+    puts "video.id: #{video.id}"
+    puts "hpc_user: #{hpc_user}"
+    puts "hpc_host: #{hpc_host}"
+    puts "hpc_key: #{hpc_key}"
+    puts "hpc_command: #{hpc_command}"
+    puts "destination_path: #{destination_path}"
+    puts "**********************************************************************"
+    
     resultOK = system("bin/pipeline02.sh #{video.zip.file.path}  \"#{video.name}\" \"#{video.id}\" \"#{hpc_user}\" \"#{hpc_host}\" \"#{hpc_key}\" \"#{hpc_command}\"  \"#{destination_path}\" ")
+
+
     puts "**********************************************************************"
     puts "resultOK: #{resultOK}"
     if !resultOK
