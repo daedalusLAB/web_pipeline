@@ -48,7 +48,7 @@ class VideosController < ApplicationController
         PipelineMailer.with(user: @video.user, status: @video.status).status_email.deliver_now
         format.json { render :show, status: :created, location: @video }
         format.html { 
-          flash[:notice] = "Video was successfully created."
+          flash[:notice] = "Task was successfully created."
           flash[:info] = "REMEMBER TO REALOAD THIS PAGE WHEN YOU RECEIVE THE EMAIL THAT YOUR TASK HAS BEEN PROCESSED!" 
           redirect_to videos_url
         }
@@ -100,7 +100,7 @@ class VideosController < ApplicationController
     @video.save
     # run job to exec pipeline_02_job.rb to scp zip file from hpc to local
     Pipeline02Job.perform_async(@video.id)
-    redirect_to videos_url, notice: "Video was successfully processed. Copying files to local machine."
+    redirect_to videos_url, notice: "Task was successfully processed. Copying files to local machine."
   end
 
   def processing
