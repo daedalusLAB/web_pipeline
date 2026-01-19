@@ -49,7 +49,7 @@ class VideosController < ApplicationController
         format.json { render :show, status: :created, location: @video }
         format.html { 
           flash[:notice] = "Task was successfully created."
-          flash[:info] = "REMEMBER TO REALOAD THIS PAGE WHEN YOU RECEIVE THE EMAIL THAT YOUR TASK HAS BEEN PROCESSED!" 
+          flash[:info] = "REMEMBER TO RELOAD THIS PAGE WHEN YOU RECEIVE THE EMAIL THAT YOUR TASK HAS BEEN PROCESSED!" 
           redirect_to videos_url
         }
       else
